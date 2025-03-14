@@ -8,8 +8,4 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="View\ElementEditor\" />
-  </ItemGroup>
-
 </Project>

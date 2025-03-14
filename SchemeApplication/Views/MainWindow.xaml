@@ -1,0 +1,74 @@
+﻿<Window x:Class="SchemeApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SchemeApplication"
+        xmlns:vm="clr-namespace:SchemeApplication.ViewModels"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+    
+    <Grid Background="#d8dee9">
+        <Border BorderBrush="#545557" BorderThickness="2"/>
+        <Grid Background="#4b4c4e" Width="150" HorizontalAlignment="Left">
+            <Border BorderBrush="#545557" BorderThickness="2" HorizontalAlignment="Right"/>
+            <ListView Background="#4b4c4e" Width="150" HorizontalAlignment="Left" 
+              ItemsSource="{Binding Path=ListBlocks}" SelectedItem="{Binding Path=SelectedListBlock}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MinWidth="22"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding ImagePath}" Width="22" Grid.Column="0"/>
+                            <TextBlock Text="{Binding Name}" Width="auto" Margin="5" Foreground="#b1b2b3" Grid.Column="1"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#ffffff"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+        </Grid>
+        <Grid Background="#4b4c4e" Width="150" HorizontalAlignment="Right">
+            <Border BorderBrush="#545557" BorderThickness="1" HorizontalAlignment="Left"/>
+        </Grid>
+        <Canvas Background="#ffffff" Margin="150,0,150,0">
+            <Grid Background="#545557">
+                <Grid.InputBindings>
+                    <MouseBinding Command="{Binding CreateBlockCommand}"
+                                  MouseAction="LeftClick"/>
+                </Grid.InputBindings>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="5"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" VerticalAlignment="Center" >
+                    <Ellipse Width="3" Height="3" Fill="#000000"/>
+                    <Ellipse Width="3" Height="3" Fill="#000000"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <Rectangle Width="auto" Height="40" Margin="1" Fill="#ffffff" VerticalAlignment="Top"/>
+                    <TextBlock Width="auto" Height="8" Text="AND" FontSize="8" Margin="1" TextAlignment="Center" VerticalAlignment="Bottom"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                    <Ellipse Width="3" Height="3" Fill="#000000" Grid.Column="2"/>
+                </StackPanel>
+            </Grid>
+        </Canvas>
+    </Grid>
+</Window>
