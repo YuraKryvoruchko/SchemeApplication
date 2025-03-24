@@ -11,9 +11,9 @@ namespace SchemeApplication.ViewModels
     {
         public ObservableCollection<ListBlock> ListBlocks { get; }
 
-        private ListBlock _selectedListBlock;
+        private ListBlock? _selectedListBlock;
 
-        public ListBlock SelectedListBlock
+        public ListBlock? SelectedListBlock
         {
             get => _selectedListBlock;
             set => Set(ref _selectedListBlock, value);

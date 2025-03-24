@@ -20,5 +20,21 @@ namespace SchemeApplication
         {
             InitializeComponent();
         }
+
+        private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if(sender is Canvas canvas)
+            {
+                Point point = e.GetPosition(canvas);
+                Views.Block block = new Views.Block()
+                {
+                    Width = 120,
+                    Height = 70
+                };
+                Canvas.SetLeft(block, point.X);
+                Canvas.SetTop(block, point.Y);
+                canvas.Children.Add(block);
+            }
+        }
     }
 }
