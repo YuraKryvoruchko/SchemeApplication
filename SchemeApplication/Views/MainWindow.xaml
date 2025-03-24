@@ -47,8 +47,11 @@
         <Grid Background="#4b4c4e" Width="150" HorizontalAlignment="Right">
             <Border BorderBrush="#545557" BorderThickness="1" HorizontalAlignment="Left"/>
         </Grid>
-        <Canvas Background="#ffffff" Margin="150,0,150,0" MouseLeftButtonDown="Canvas_MouseLeftButtonDown">
-            <a:Block Something="5"/>
+        <Canvas x:Name="Canvas" Background="#ffffff" Margin="150,0,150,0">
+            <Canvas.InputBindings>
+                <MouseBinding Command="{Binding CreateBlockCommand}"
+                              MouseAction="LeftClick"/>
+            </Canvas.InputBindings>
         </Canvas>
     </Grid>
 </Window>

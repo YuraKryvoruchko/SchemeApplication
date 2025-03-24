@@ -11,6 +11,6 @@ namespace SchemeApplication.Models
         public int OutputsCount { get; set; }
         public Point Position { get; set; }
         public required Block[] InputBlocks { get; set; }
-        public required BlockLogic Logic { get; set; }
+        public BlockLogic Logic { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using System.Windows.Input;
 using SchemeApplication.Infrastructure.Commands;
 using SchemeApplication.Data;
 using SchemeApplication.Services.Interfaces;
+using SchemeApplication.Services;
 
 namespace SchemeApplication.ViewModels
 {
@@ -37,8 +38,8 @@ namespace SchemeApplication.ViewModels
 
         private void OnCreateBlockCommandExecuted(object parameter)
         {
+            BlockBuilderService.Singleton.CreateBlock();
             SelectedListBlock = null;
-            _blockBuilderService.CreateBlock();
         }
         private bool CanCreateBlockCommandExecuted(object parameter) 
         {

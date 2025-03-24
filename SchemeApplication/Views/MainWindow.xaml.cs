@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using SchemeApplication.Services;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,7 @@ namespace SchemeApplication
         public MainWindow()
         {
             InitializeComponent();
+            BlockBuilderService.Singleton = new BlockBuilderService(this.Canvas);
         }
 
         private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

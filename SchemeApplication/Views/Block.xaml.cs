@@ -20,7 +20,6 @@ namespace SchemeApplication.Views
     /// </summary>
     public partial class Block : UserControl
     {
-        public int Something { get; set; }
         public Block()
         {
             InitializeComponent();
