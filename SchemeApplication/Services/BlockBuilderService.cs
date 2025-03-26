@@ -1,9 +1,10 @@
 ﻿using System.Windows.Controls;
+using System.Windows;
 using SchemeApplication.Services.Interfaces;
-using SchemeApplication.Views;
 using SchemeApplication.ViewModels;
 using SchemeApplication.Models;
 using SchemeApplication.Infrastructure.BlockLogics;
+using System.Windows.Data;
 
 namespace SchemeApplication.Services
 {
@@ -18,24 +19,39 @@ namespace SchemeApplication.Services
             _canvas = canvas;
         }
 
-        public void CreateBlock()
+        public void CreateBlock(Point point)
         {
-            Models.Block model = new Models.Block()
+            Block model = new Block()
             {
                 Name = "And",
                 InputsCount = 2,
                 OutputsCount = 1,
-                InputBlocks = new Models.Block[2]
+                Position = point,
+                InputBlocks = new Block[2]
             };
             model.Logic = new AndBlockLogic(model);
 
-            Views.Block block = new Views.Block() 
+            Views.Block block = new Views.Block()
             {
                 DataContext = new BlockViewModel(model),
                 Width = 120,
                 Height = 70
             };
+
+            Binding leftPropertyBinding = new Binding(nameof(Block.Position) + "." + nameof(Block.Position.X));
+            leftPropertyBinding.Mode = BindingMode.TwoWay;
+            Binding topPropertyBinding = new Binding(nameof(Block.Position) + "." + nameof(Block.Position.Y));
+            topPropertyBinding.Mode = BindingMode.TwoWay;
+            block.SetBinding(Canvas.LeftProperty, leftPropertyBinding);
+            block.SetBinding(Canvas.TopProperty, topPropertyBinding);
+
             _canvas.Children.Add(block);
         }
+        public void DeleteBlock() { throw new NotImplementedException(); }
+        public void MoveBlock() { throw new NotImplementedException(); }
+        public void GetFrom(Block block, int fromOutputNumber) { throw new NotImplementedException(); }
+        public void InputTo(Block block, int toInputNumber) { throw new NotImplementedException(); }
+        public void RejectCurrentConnection() { throw new NotImplementedException(); }
+        public void RejectConnection() { throw new NotImplementedException(); }
     }
 }

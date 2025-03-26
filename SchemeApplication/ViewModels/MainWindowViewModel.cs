@@ -2,10 +2,12 @@
 using System.Collections.ObjectModel;
 using SchemeApplication.Models;
 using System.Windows.Input;
+using System.Windows;
 using SchemeApplication.Infrastructure.Commands;
 using SchemeApplication.Data;
 using SchemeApplication.Services.Interfaces;
 using SchemeApplication.Services;
+using System.Windows.Data;
 
 namespace SchemeApplication.ViewModels
 {
@@ -16,6 +18,7 @@ namespace SchemeApplication.ViewModels
         #region Properties
 
         public ObservableCollection<ListBlock> ListBlocks { get; }
+        public CompositeCollection CanvasObjects { get; }
 
         #region Selected List Block
 
@@ -38,7 +41,7 @@ namespace SchemeApplication.ViewModels
 
         private void OnCreateBlockCommandExecuted(object parameter)
         {
-            BlockBuilderService.Singleton.CreateBlock();
+            BlockBuilderService.Singleton.CreateBlock((Point)parameter);
             SelectedListBlock = null;
         }
         private bool CanCreateBlockCommandExecuted(object parameter) 

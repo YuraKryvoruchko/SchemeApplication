@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+﻿using System.Windows;
 using SchemeApplication.Infrastructure.BlockLogics.Base;
 
 namespace SchemeApplication.Models

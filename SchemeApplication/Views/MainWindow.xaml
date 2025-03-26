@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SchemeApplication"
         xmlns:vm="clr-namespace:SchemeApplication.ViewModels"
-        xmlns:a="clr-namespace:SchemeApplication.Views"
+        xmlns:v="clr-namespace:SchemeApplication.Views"
+        xmlns:m="clr-namespace:SchemeApplication.Models"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
@@ -47,11 +48,7 @@
         <Grid Background="#4b4c4e" Width="150" HorizontalAlignment="Right">
             <Border BorderBrush="#545557" BorderThickness="1" HorizontalAlignment="Left"/>
         </Grid>
-        <Canvas x:Name="Canvas" Background="#ffffff" Margin="150,0,150,0">
-            <Canvas.InputBindings>
-                <MouseBinding Command="{Binding CreateBlockCommand}"
-                              MouseAction="LeftClick"/>
-            </Canvas.InputBindings>
-        </Canvas>
+        <Canvas x:Name="Canvas" Background="#ffffff" Margin="150,0,150,0" ClipToBounds="True"
+                MouseLeftButtonDown="Canvas_MouseLeftButtonDown"/>
     </Grid>
 </Window>

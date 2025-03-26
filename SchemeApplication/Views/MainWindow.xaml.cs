@@ -1,4 +1,5 @@
 ﻿using SchemeApplication.Services;
+using SchemeApplication.ViewModels;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,17 +26,9 @@ namespace SchemeApplication
 
         private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if(sender is Canvas canvas)
+            if(DataContext is MainWindowViewModel viewModel && viewModel.CreateBlockCommand.CanExecute(null))
             {
-                Point point = e.GetPosition(canvas);
-                Views.Block block = new Views.Block()
-                {
-                    Width = 120,
-                    Height = 70
-                };
-                Canvas.SetLeft(block, point.X);
-                Canvas.SetTop(block, point.Y);
-                canvas.Children.Add(block);
+                viewModel.CreateBlockCommand.Execute(e.GetPosition(Canvas));
             }
         }
     }

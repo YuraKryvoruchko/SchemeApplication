@@ -6,23 +6,21 @@
              xmlns:local="clr-namespace:SchemeApplication.Views"
              xmlns:vm="clr-namespace:SchemeApplication.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="70" d:DesignWidth="120">
-    <UserControl.DataContext>
-        <vm:BlockViewModel/>
-    </UserControl.DataContext>
+             d:DesignHeight="70" d:DesignWidth="120"
+             d:DataContext="{d:DesignInstance vm:BlockViewModel}">
     <Grid Background="#545557">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5"/>
             <ColumnDefinition/>
             <ColumnDefinition Width="5"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" VerticalAlignment="Center" >
+        <StackPanel Grid.Column="0" VerticalAlignment="Center">
             <Ellipse Width="3" Height="3" Fill="#000000"/>
             <Ellipse Width="3" Height="3" Fill="#000000"/>
         </StackPanel>
         <StackPanel Grid.Column="1">
-            <Image Source="/Resources/Images/null_image.png"  Width="auto" Height="53" Margin="1" VerticalAlignment="Top"/>
-            <TextBlock Width="auto" Height="10" Text="{Binding Path=Name}" FontSize="8" Margin="0" TextAlignment="Center"/>
+            <Image Source="{Binding Image}" Stretch="Fill" Width="auto" Height="53" Margin="1" VerticalAlignment="Top"/>
+            <TextBlock Width="auto" Height="10" Text="{Binding Name}" FontSize="8" Margin="0" TextAlignment="Center"/>
         </StackPanel>
         <StackPanel Grid.Column="2" VerticalAlignment="Center">
             <Ellipse Width="3" Height="3" Fill="#000000" Grid.Column="2"/>

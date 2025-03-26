@@ -1,13 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows;
+using SchemeApplication.Models;
 
 namespace SchemeApplication.Services.Interfaces
 {
     internal interface IBlockBuilderService
     {
-        void CreateBlock();
+        void CreateBlock(Point point);
+        void DeleteBlock();
+        void MoveBlock();
+        void GetFrom(Block block, int fromOutputNumber);
+        void InputTo(Block block, int toInputNumber);
+        void RejectCurrentConnection();
+        void RejectConnection();
     }
 }
