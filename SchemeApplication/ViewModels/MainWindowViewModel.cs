@@ -32,11 +32,49 @@ namespace SchemeApplication.ViewModels
 
         #endregion
 
+        #region Selected Block
+
+        private BlockViewModel _selectedBlock;        
+
+        public BlockViewModel SelectedBlock
+        {
+            get { return _selectedBlock; }
+            set { Set(ref _selectedBlock, value); }
+        }
+
+
+        #endregion
+
+        #region Inputs
+
+        private int _inputs;
+
+        public int Inputs
+        {
+            get { return _inputs; }
+            set { Set(ref _inputs, value); }
+        }
+
+        #endregion
+
+        #region Outputs
+
+        private int _outputs;
+
+        public int Outputs
+        {
+            get { return _outputs; }
+            set { Set(ref _outputs, value); }
+        }
+
+        #endregion
+
         #endregion
 
         #region Commands
 
         #region CreateBlockCommand
+
         public ICommand CreateBlockCommand { get; }
 
         private void OnCreateBlockCommandExecuted(object parameter)
@@ -48,6 +86,22 @@ namespace SchemeApplication.ViewModels
         {
             return _selectedListBlock != null;
         }
+
+        #endregion
+
+        #region SelectBlock
+
+        public ICommand SelectBlock { get; }
+
+        private void OnSelectBlockCommandExecuted(object parameter)
+        {
+            SelectedBlock = (BlockViewModel)parameter;
+        }
+        private bool CanSelectBlockCommandExecuted(object parameter)
+        {
+            return true;
+        }
+
         #endregion
 
         #endregion

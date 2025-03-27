@@ -15,40 +15,58 @@
     </Window.DataContext>
     
     <Grid Background="#d8dee9">
-        <Border BorderBrush="#545557" BorderThickness="2"/>
-        <Grid Background="#4b4c4e" Width="150" HorizontalAlignment="Left">
-            <Border BorderBrush="#545557" BorderThickness="2" HorizontalAlignment="Right"/>
-            <ListView Background="#4b4c4e" Width="150" HorizontalAlignment="Left" 
-              ItemsSource="{Binding Path=ListBlocks}" SelectedItem="{Binding Path=SelectedListBlock}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition MinWidth="22"/>
-                                <ColumnDefinition Width="auto"/>
-                            </Grid.ColumnDefinitions>
-                            <Image Source="{Binding ImagePath}" Width="22" Grid.Column="0"/>
-                            <TextBlock Text="{Binding Name}" Width="auto" Margin="5" Foreground="#b1b2b3" Grid.Column="1"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-                        <Style.Triggers>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Background" Value="#ffffff"/>
-                                <Setter Property="FontWeight" Value="Bold"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </ListView.ItemContainerStyle>
-            </ListView>
-        </Grid>
-        <Grid Background="#4b4c4e" Width="150" HorizontalAlignment="Right">
-            <Border BorderBrush="#545557" BorderThickness="1" HorizontalAlignment="Left"/>
-        </Grid>
-        <Canvas x:Name="Canvas" Background="#ffffff" Margin="150,0,150,0" ClipToBounds="True"
-                MouseLeftButtonDown="Canvas_MouseLeftButtonDown"/>
+        <Border BorderBrush="#545557" BorderThickness="2">
+            <Grid Background="#4b4c4e" Width="150" HorizontalAlignment="Left">
+                <Border BorderBrush="#545557" BorderThickness="2" HorizontalAlignment="Right"/>
+                <ListView Background="#4b4c4e" Width="150" HorizontalAlignment="Left" 
+                  ItemsSource="{Binding Path=ListBlocks}" SelectedItem="{Binding Path=SelectedListBlock}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition MinWidth="22"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding ImagePath}" Width="22" Grid.Column="0"/>
+                                <TextBlock Text="{Binding Name}" Width="auto" Margin="5" Foreground="#b1b2b3" Grid.Column="1"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="#ffffff"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </Grid>
+        </Border>
+        <Border BorderBrush="#545557" BorderThickness="2">
+            <Grid Background="#4b4c4e" Width="150" HorizontalAlignment="Right">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Margin="5,0,0,5" Grid.Column="0">
+                        <TextBlock Text="Inputs:" Foreground="#b1b2b3"/>
+                        <TextBlock Text="Outputs:" Foreground="#b1b2b3"/>
+                    </StackPanel>
+                    <StackPanel Margin="5,0,5,5" Grid.Column="1">
+                        <TextBox Text="{Binding Inputs, Mode=TwoWay, FallbackValue=0}"/>
+                        <TextBox Text="{Binding Outputs, Mode=TwoWay, FallbackValue=0}"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Border>
+        <Border BorderBrush="#545557" BorderThickness="2">
+            <Canvas x:Name="Canvas" Background="#ffffff" Margin="150,0,150,0" ClipToBounds="True"
+                    MouseLeftButtonDown="Canvas_MouseLeftButtonDown"/>
+        </Border>
     </Grid>
 </Window>

@@ -14,9 +14,12 @@ namespace SchemeApplication.Services
 
         public static BlockBuilderService? Singleton { get; set; }
 
+        public List<Block> CreatedBlocks { get; private set; }
+
         public BlockBuilderService(Canvas canvas)
         {
             _canvas = canvas;
+            CreatedBlocks = new List<Block>();
         }
 
         public void CreateBlock(Point point)
@@ -31,6 +34,19 @@ namespace SchemeApplication.Services
             };
             model.Logic = new AndBlockLogic(model);
 
+            Views.Block block = CreateViewBlock(model);
+            _canvas.Children.Add(block);
+            CreatedBlocks.Add(model);
+        }
+        public void DeleteBlock() { throw new NotImplementedException(); }
+        public void MoveBlock() { throw new NotImplementedException(); }
+        public void GetFrom(Block block, int fromOutputNumber) { throw new NotImplementedException(); }
+        public void InputTo(Block block, int toInputNumber) { throw new NotImplementedException(); }
+        public void RejectCurrentConnection() { throw new NotImplementedException(); }
+        public void RejectConnection() { throw new NotImplementedException(); }
+
+        private Views.Block CreateViewBlock(Block model)
+        {
             Views.Block block = new Views.Block()
             {
                 DataContext = new BlockViewModel(model),
@@ -45,13 +61,7 @@ namespace SchemeApplication.Services
             block.SetBinding(Canvas.LeftProperty, leftPropertyBinding);
             block.SetBinding(Canvas.TopProperty, topPropertyBinding);
 
-            _canvas.Children.Add(block);
+            return block;
         }
-        public void DeleteBlock() { throw new NotImplementedException(); }
-        public void MoveBlock() { throw new NotImplementedException(); }
-        public void GetFrom(Block block, int fromOutputNumber) { throw new NotImplementedException(); }
-        public void InputTo(Block block, int toInputNumber) { throw new NotImplementedException(); }
-        public void RejectCurrentConnection() { throw new NotImplementedException(); }
-        public void RejectConnection() { throw new NotImplementedException(); }
     }
 }

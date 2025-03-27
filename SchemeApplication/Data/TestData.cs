@@ -10,6 +10,6 @@ namespace SchemeApplication.Data
             new ListBlock() { Name = "OR" },
             new ListBlock() { Name = "NOT" }
         };
-        public static List<ListBlock> ListBlocks { get => _listBlocks; }
+        public static IReadOnlyList<ListBlock> ListBlocks { get => _listBlocks; }
     }
 }
