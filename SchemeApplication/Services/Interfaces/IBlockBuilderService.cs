@@ -5,7 +5,7 @@ namespace SchemeApplication.Services.Interfaces
 {
     internal interface IBlockBuilderService
     {
-        void CreateBlock(Point point);
+        void CreateBlock(Block config, Point point);
         void DeleteBlock();
         void MoveBlock();
         void GetFrom(Block block, int fromOutputNumber);

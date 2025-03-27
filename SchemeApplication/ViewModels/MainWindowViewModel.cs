@@ -79,7 +79,7 @@ namespace SchemeApplication.ViewModels
 
         private void OnCreateBlockCommandExecuted(object parameter)
         {
-            BlockBuilderService.Singleton.CreateBlock((Point)parameter);
+            BlockBuilderService.Singleton.CreateBlock(TestData.BlockConfigs[SelectedListBlock.IndexOfBlockConfig], (Point)parameter);
             SelectedListBlock = null;
         }
         private bool CanCreateBlockCommandExecuted(object parameter) 

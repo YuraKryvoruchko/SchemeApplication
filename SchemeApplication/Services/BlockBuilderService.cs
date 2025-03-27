@@ -22,17 +22,16 @@ namespace SchemeApplication.Services
             CreatedBlocks = new List<Block>();
         }
 
-        public void CreateBlock(Point point)
+        public void CreateBlock(Block config, Point point)
         {
             Block model = new Block()
             {
-                Name = "And",
-                InputsCount = 2,
-                OutputsCount = 1,
+                Name = config.Name,
+                InputsCount = config.InputsCount,
+                OutputsCount = config.OutputsCount,
                 Position = point,
-                InputBlocks = new Block[2]
+                InputBlocks = new Block[config.InputsCount]
             };
-            model.Logic = new AndBlockLogic(model);
 
             Views.Block block = CreateViewBlock(model);
             _canvas.Children.Add(block);
