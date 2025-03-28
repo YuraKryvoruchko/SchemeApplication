@@ -21,14 +21,14 @@ namespace SchemeApplication
         public MainWindow()
         {
             InitializeComponent();
-            BlockBuilderService.Singleton = new BlockBuilderService(this.Canvas);
+            //BlockBuilderService.Singleton = new BlockBuilderService(this.Canvas);
         }
 
         private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if(DataContext is MainWindowViewModel viewModel && viewModel.CreateBlockCommand.CanExecute(null))
             {
-                viewModel.CreateBlockCommand.Execute(e.GetPosition(Canvas));
+                viewModel.CreateBlockCommand.Execute(null);
             }
         }
     }

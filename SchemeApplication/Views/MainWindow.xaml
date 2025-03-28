@@ -5,15 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SchemeApplication"
         xmlns:vm="clr-namespace:SchemeApplication.ViewModels"
-        xmlns:v="clr-namespace:SchemeApplication.Views"
-        xmlns:m="clr-namespace:SchemeApplication.Models"
+        xmlns:controls="clr-namespace:SchemeApplication.Views.Controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
-    
+
     <Grid Background="#d8dee9">
         <Border BorderBrush="#545557" BorderThickness="2">
             <Grid Background="#4b4c4e" Width="150" HorizontalAlignment="Left">
@@ -65,8 +64,19 @@
             </Grid>
         </Border>
         <Border BorderBrush="#545557" BorderThickness="2">
-            <Canvas x:Name="Canvas" Background="#ffffff" Margin="150,0,150,0" ClipToBounds="True"
-                    MouseLeftButtonDown="Canvas_MouseLeftButtonDown"/>
+            <controls:ItemsCanvas>
+                <controls:ItemsCanvas.ItemContainerStyle>
+                    <Style>
+                        <Setter Property="Canvas.Left" Value="{Binding Position.X}"/>
+                        <Setter Property="Canvas.Top" Value="{Binding Position.Y}"/>
+                    </Style>
+                </controls:ItemsCanvas.ItemContainerStyle>
+                <controls:ItemsCanvas.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas x:Name="Canvas" Background="#ffffff" Margin="150,0,150,0" ClipToBounds="True"/>
+                    </ItemsPanelTemplate>
+                </controls:ItemsCanvas.ItemsPanel>
+            </controls:ItemsCanvas>
         </Border>
     </Grid>
 </Window>

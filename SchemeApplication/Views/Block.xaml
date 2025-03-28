@@ -14,7 +14,7 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="5"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+        <StackPanel Grid.Column="0" VerticalAlignment="Stretch">
             <Ellipse Width="3" Height="3" Fill="#000000"/>
             <Ellipse Width="3" Height="3" Fill="#000000"/>
         </StackPanel>

@@ -79,7 +79,9 @@ namespace SchemeApplication.ViewModels
 
         private void OnCreateBlockCommandExecuted(object parameter)
         {
-            BlockBuilderService.Singleton.CreateBlock(TestData.BlockConfigs[SelectedListBlock.IndexOfBlockConfig], (Point)parameter);
+            //BlockBuilderService.Singleton.CreateBlock(TestData.BlockConfigs[SelectedListBlock.IndexOfBlockConfig], (Point)parameter);
+            CanvasObjects.Add(new Block() { InputBlocks = new Block[2], Name = "And", Position = new Point(30, 50) });
+            CanvasObjects.Add(new Line() { X1 = 40, Y1 = 10, X2 = 140, Y2 = 300 });
             SelectedListBlock = null;
         }
         private bool CanCreateBlockCommandExecuted(object parameter) 
@@ -109,6 +111,7 @@ namespace SchemeApplication.ViewModels
         public MainWindowViewModel()
         {
             ListBlocks = new ObservableCollection<ListBlock>(TestData.ListBlocks);
+            CanvasObjects = new CompositeCollection();
 
             CreateBlockCommand = new LambdaCommand(OnCreateBlockCommandExecuted, CanCreateBlockCommandExecuted);
         }
