@@ -8,13 +8,12 @@ using SchemeApplication.Data;
 using SchemeApplication.Services.Interfaces;
 using SchemeApplication.Services;
 using System.Windows.Data;
+using SchemeApplication.ViewModels.CanvasFigures;
 
 namespace SchemeApplication.ViewModels
 {
     class MainWindowViewModel : ViewModel
     {
-        private IBlockBuilderService _blockBuilderService;
-
         #region Properties
 
         public ObservableCollection<ListBlock> ListBlocks { get; }
@@ -79,9 +78,14 @@ namespace SchemeApplication.ViewModels
 
         private void OnCreateBlockCommandExecuted(object parameter)
         {
-            //BlockBuilderService.Singleton.CreateBlock(TestData.BlockConfigs[SelectedListBlock.IndexOfBlockConfig], (Point)parameter);
-            CanvasObjects.Add(new Block() { InputBlocks = new Block[2], Name = "And", Position = new Point(30, 50) });
-            CanvasObjects.Add(new Line() { X1 = 40, Y1 = 10, X2 = 140, Y2 = 300 });
+            Point point = (Point)parameter;
+            BlockFigureViewModel blockFigureViewModel = new BlockFigureViewModel()
+            {
+                Position = point,
+                Name = TestData.BlockConfigs[_selectedListBlock.IndexOfBlockConfig].Name,
+                ImagePath = TestData.BlockConfigs[_selectedListBlock.IndexOfBlockConfig].Image
+            };
+            CanvasObjects.Add(blockFigureViewModel);
             SelectedListBlock = null;
         }
         private bool CanCreateBlockCommandExecuted(object parameter) 

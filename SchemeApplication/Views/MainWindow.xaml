@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SchemeApplication"
         xmlns:vm="clr-namespace:SchemeApplication.ViewModels"
+        xmlns:vmf="clr-namespace:SchemeApplication.ViewModels.CanvasFigures"
         xmlns:controls="clr-namespace:SchemeApplication.Views.Controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -64,16 +65,46 @@
             </Grid>
         </Border>
         <Border BorderBrush="#545557" BorderThickness="2">
-            <controls:ItemsCanvas>
+            <controls:ItemsCanvas x:Name="ItemsCanvas" Margin="150,0,150,0" ItemsSource="{Binding CanvasObjects}">
+                <controls:ItemsCanvas.Resources>
+                    <DataTemplate DataType="{x:Type vmf:BlockFigureViewModel}">
+                        <Grid Background="#545557" Width="100" Height="65">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="5"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" VerticalAlignment="Stretch">
+                                <Ellipse Width="3" Height="3" Fill="#000000"/>
+                                <Ellipse Width="3" Height="3" Fill="#000000"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <Image Source="{Binding ImagePath}" Stretch="Fill" Width="auto" Height="53" Margin="1" VerticalAlignment="Top"/>
+                                <TextBlock Width="auto" Height="10" Text="{Binding Name}" FontSize="8" Margin="0" TextAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                <Ellipse Width="3" Height="3" Fill="#000000" Grid.Column="2"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type vmf:LineFigureViewModel}">
+                        <Line Stroke="Black" StrokeThickness="3" 
+                              X1="{Binding OutputPoint.X}" 
+                              Y1="{Binding OutputPoint.Y}" 
+                              X2="{Binding InputPoint.X}" 
+                              Y2="{Binding InputPoint.Y}"/>
+                    </DataTemplate>
+                </controls:ItemsCanvas.Resources>
                 <controls:ItemsCanvas.ItemContainerStyle>
-                    <Style>
-                        <Setter Property="Canvas.Left" Value="{Binding Position.X}"/>
-                        <Setter Property="Canvas.Top" Value="{Binding Position.Y}"/>
+                    <Style TargetType="controls:DraggableContentControl">
+                        <Setter Property="Position" Value="{Binding Position, Mode=TwoWay}"/>
+                        <Setter Property="IsDraggable" Value="{Binding IsDraggable}"/>
                     </Style>
                 </controls:ItemsCanvas.ItemContainerStyle>
                 <controls:ItemsCanvas.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Canvas x:Name="Canvas" Background="#ffffff" Margin="150,0,150,0" ClipToBounds="True"/>
+                        <Canvas x:Name="Canvas" Background="#ffffff" ClipToBounds="True"
+                                MouseLeftButtonDown="Canvas_MouseLeftButtonDown"/>
                     </ItemsPanelTemplate>
                 </controls:ItemsCanvas.ItemsPanel>
             </controls:ItemsCanvas>

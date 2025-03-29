@@ -7,6 +7,44 @@ namespace SchemeApplication.Views.Controls
 {
     public class DraggableContentControl : ContentControl
     {
+        #region Properties
+
+        #region PositionProperty
+
+        public static readonly DependencyProperty PositionProperty =
+            DependencyProperty.Register("Position", typeof(Point), typeof(DraggableContentControl), new PropertyMetadata(OnPositionPropertyChanged));
+
+        public Point Position
+        {
+            get { return (Point)GetValue(PositionProperty); }
+            set { SetValue(PositionProperty, value); }
+        }
+
+        private static void OnPositionPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            DraggableContentControl control = d as DraggableContentControl;
+            Point newValue = (Point)e.NewValue;
+            Canvas.SetLeft(control, newValue.X);
+            Canvas.SetTop(control, newValue.Y);
+        }
+
+        #endregion
+
+        #region IsDraggableProperty
+
+        public static readonly DependencyProperty IsDraggableProperty =
+            DependencyProperty.Register("IsDraggable", typeof(bool), typeof(DraggableContentControl), new PropertyMetadata(true));
+
+        public bool IsDraggable
+        {
+            get { return (bool)GetValue(IsDraggableProperty); }
+            set { SetValue(IsDraggableProperty, value); }
+        }
+
+        #endregion
+
+        #endregion
+
         private IInputElement ParentInputElement { get; set; }
         private bool IsDragActive { get; set; }
         private Point DragOffset { get; set; }
@@ -41,7 +79,11 @@ namespace SchemeApplication.Views.Controls
 
         private void InitializeDrag_OnLeftMouseButtonDown(object sender, MouseButtonEventArgs e)
         {
-            // Do nothing if disabled
+            if (!IsDraggable)
+            {
+                return;
+            }
+
             this.IsDragActive = this.IsEnabled;
             if (!this.IsDragActive)
             {
@@ -50,13 +92,10 @@ namespace SchemeApplication.Views.Controls
 
             Point relativeDragStartPosition = e.GetPosition(this.ParentInputElement);
 
-            // Calculate the drag offset to allow the content to be dragged 
-            // relative to the clicked coordinates (instead of the top-left corner)
             this.DragOffset = new Point(
               relativeDragStartPosition.X - Canvas.GetLeft(this),
               relativeDragStartPosition.Y - Canvas.GetTop(this));
 
-            // Prevent other controls from stealing mouse input while dragging
             CaptureMouse();
         }
 
@@ -75,11 +114,8 @@ namespace SchemeApplication.Views.Controls
 
             Point currentPosition = e.GetPosition(this.ParentInputElement);
 
-            // Apply the drag offset to drag relative to the 
-            // initial mouse down coordinates (instead of the top-left corner)
             currentPosition.Offset(-this.DragOffset.X, -this.DragOffset.Y);
-            Canvas.SetLeft(this, currentPosition.X);
-            Canvas.SetTop(this, currentPosition.Y);
+            Position = currentPosition;
         }
 
         private bool TryFindParentElement<TParent>(DependencyObject child, out TParent resultElement)
