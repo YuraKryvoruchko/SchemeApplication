@@ -5,8 +5,6 @@ using System.Windows.Input;
 using System.Windows;
 using SchemeApplication.Infrastructure.Commands;
 using SchemeApplication.Data;
-using SchemeApplication.Services.Interfaces;
-using SchemeApplication.Services;
 using System.Windows.Data;
 using SchemeApplication.ViewModels.CanvasFigures;
 
@@ -14,6 +12,13 @@ namespace SchemeApplication.ViewModels
 {
     class MainWindowViewModel : ViewModel
     {
+        #region Fields
+
+        private ConnectionViewModel? _firstConnection;
+        private ConnectionViewModel? _secondConnection;
+
+        #endregion
+
         #region Properties
 
         public ObservableCollection<ListBlock> ListBlocks { get; }
@@ -85,6 +90,7 @@ namespace SchemeApplication.ViewModels
                 Name = TestData.BlockConfigs[_selectedListBlock.IndexOfBlockConfig].Name,
                 ImagePath = TestData.BlockConfigs[_selectedListBlock.IndexOfBlockConfig].Image
             };
+            blockFigureViewModel.OnSelectedInput += HandleConnectionSelection;
             CanvasObjects.Add(blockFigureViewModel);
             SelectedListBlock = null;
         }
@@ -95,29 +101,33 @@ namespace SchemeApplication.ViewModels
 
         #endregion
 
-        #region SelectBlock
-
-        public ICommand SelectBlock { get; }
-
-        private void OnSelectBlockCommandExecuted(object parameter)
-        {
-            SelectedBlock = (BlockViewModel)parameter;
-        }
-        private bool CanSelectBlockCommandExecuted(object parameter)
-        {
-            return true;
-        }
-
-        #endregion
-
         #endregion
 
         public MainWindowViewModel()
         {
             ListBlocks = new ObservableCollection<ListBlock>(TestData.ListBlocks);
             CanvasObjects = new CompositeCollection();
-
             CreateBlockCommand = new LambdaCommand(OnCreateBlockCommandExecuted, CanCreateBlockCommandExecuted);
+        }
+
+        private void HandleConnectionSelection(ConnectionViewModel connection)
+        {
+            if (_firstConnection == null)
+            {
+                _firstConnection = connection;
+            }
+            else if (_secondConnection == null)
+            {
+                _secondConnection = connection;
+                LineFigureViewModel lineFigureViewModel = new LineFigureViewModel()
+                {
+                    InputConnection = _firstConnection,
+                    OutputConnection = _secondConnection
+                };
+                CanvasObjects.Add(lineFigureViewModel);
+
+                _firstConnection = _secondConnection = null;
+            }
         }
     }
 }

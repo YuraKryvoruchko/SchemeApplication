@@ -1,5 +1,4 @@
 ﻿using SchemeApplication.ViewModels.CanvasFigures.Base;
-using System.Windows;
 
 namespace SchemeApplication.ViewModels.CanvasFigures
 {
@@ -7,26 +6,26 @@ namespace SchemeApplication.ViewModels.CanvasFigures
     {
         #region Properties 
 
-        #region InputPoint
+        #region InputConnection
 
-        private Point _inputPoint;
+        private ConnectionViewModel? _inputConnection;
 
-        public Point InputPoint
+        public ConnectionViewModel? OutputConnection
         {
-            get { return _inputPoint; }
-            set { Set(ref _inputPoint, value); }
+            get { return _inputConnection; }
+            set { Set(ref _inputConnection, value); }
         }
 
         #endregion
 
-        #region OutputPoint
+        #region OutputConnection
 
-        private Point _outputPoint;
+        private ConnectionViewModel? _outputConnection;
 
-        public Point OutputPoint
+        public ConnectionViewModel? InputConnection
         {
-            get { return _outputPoint; }
-            set { Set(ref _outputPoint, value); }
+            get { return _outputConnection; }
+            set { Set(ref _outputConnection, value); }
         }
 
         #endregion

@@ -1,4 +1,5 @@
 ﻿using SchemeApplication.ViewModels.Base;
+using System.Runtime.CompilerServices;
 using System.Windows;
 
 namespace SchemeApplication.ViewModels.CanvasFigures.Base
@@ -24,8 +25,22 @@ namespace SchemeApplication.ViewModels.CanvasFigures.Base
         public Point Position
         {
             get => _position;
-            set => Set(ref _position, value);
+            set
+            {
+                Point oldValue = _position;
+                Set(ref _position, value);
+                if(oldValue != _position)
+                {
+                    OnChangePosition?.Invoke(oldValue, value);
+                }
+            }
         }
+
+        #endregion
+
+        #region Events
+
+        public event Action<Point, Point> OnChangePosition;
 
         #endregion
     }

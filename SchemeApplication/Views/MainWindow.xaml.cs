@@ -1,7 +1,9 @@
 ﻿using SchemeApplication.ViewModels;
+using SchemeApplication.ViewModels.CanvasFigures;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Shapes;
 
 namespace SchemeApplication
 {
@@ -20,7 +22,15 @@ namespace SchemeApplication
             if(DataContext is MainWindowViewModel viewModel && viewModel.CreateBlockCommand.CanExecute(null))
             {
                 viewModel.CreateBlockCommand.Execute(e.GetPosition(sender as Canvas));
-            }
+            }     
+        }
+
+        private void Ellipse_Loaded(object sender, EventArgs e)
+        {
+            Ellipse ellipse = (Ellipse)sender;
+            ConnectionViewModel connection = ellipse.DataContext as ConnectionViewModel;
+            Point point = ellipse.TranslatePoint(new Point(0, 0), ItemsCanvas.Canvas);
+            connection.Position = point;
         }
     }
 }
