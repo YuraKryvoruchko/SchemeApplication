@@ -1,9 +1,9 @@
-﻿using SchemeApplication.ViewModels.CanvasFigures.Base;
+﻿using SchemeApplication.ViewModels.Base;
 using System.Windows;
 
 namespace SchemeApplication.ViewModels.CanvasFigures
 {
-    internal class ConnectionViewModel : FigureBaseViewModel
+    internal class ConnectionViewModel : ViewModel
     {
         #region Properties
 

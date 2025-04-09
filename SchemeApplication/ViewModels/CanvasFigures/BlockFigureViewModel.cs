@@ -67,6 +67,18 @@ namespace SchemeApplication.ViewModels.CanvasFigures
 
         #endregion
 
+        #region Outputs
+
+        private List<ConnectionViewModel> _outputs;
+
+        public List<ConnectionViewModel> Outputs
+        {
+            get { return _outputs; }
+            set { Set(ref _outputs, value); }
+        }
+
+        #endregion
+
         #region Selected Connection 
 
         private ConnectionViewModel? _selectedConnection;
@@ -94,13 +106,20 @@ namespace SchemeApplication.ViewModels.CanvasFigures
 
         #endregion
 
-        public BlockFigureViewModel()
+        public BlockFigureViewModel(int inputCount, int outputCount)
         {
-            Inputs = new List<ConnectionViewModel>()
+            Inputs = new List<ConnectionViewModel>();
+            for(int i = 0; i < inputCount; i++)
             {
-                new ConnectionViewModel() { SourceBlock = this, Number = 0 },
-                new ConnectionViewModel() { SourceBlock = this, Number = 1 }
-            };
+                Inputs.Add(new ConnectionViewModel() { SourceBlock = this, Number = i });
+            }
+
+            Outputs = new List<ConnectionViewModel>();
+            for (int i = 0; i < outputCount; i++)
+            {
+                Outputs.Add(new ConnectionViewModel() { SourceBlock = this, Number = i });
+            }
+
             this.OnChangePosition += HandleBlockMove;
         }
         ~BlockFigureViewModel()
@@ -125,7 +144,11 @@ namespace SchemeApplication.ViewModels.CanvasFigures
 
             foreach(var connection in _inputs)
             {
-                connection.Position = connection.Position + vector;
+                connection.Position += vector;
+            }
+            foreach (var connection in _outputs)
+            {
+                connection.Position += vector;
             }
         }
     }

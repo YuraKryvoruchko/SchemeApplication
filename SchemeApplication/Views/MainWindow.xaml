@@ -70,28 +70,34 @@
                     <DataTemplate DataType="{x:Type vmf:BlockFigureViewModel}">
                         <Grid Background="#545557" Width="100" Height="65">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="15"/>
                                 <ColumnDefinition/>
-                                <ColumnDefinition Width="5"/>
+                                <ColumnDefinition Width="15"/>
                             </Grid.ColumnDefinitions>
-                            <ListView Grid.Column="0" VerticalAlignment="Stretch" 
+                            <ListBox Grid.Column="0" VerticalAlignment="Stretch" 
                                       ItemsSource="{Binding Inputs}"
-                                      SelectedItem="{Binding SelectedConnection}"
-                                      IsHitTestVisible="True">
-                                <ListView.ItemTemplate>
+                                      SelectedItem="{Binding SelectedConnection}">
+                                <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <Ellipse Width="6" Height="6" Fill="#000000" 
                                                  Loaded="Ellipse_Loaded"/>
                                     </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
                             <StackPanel Grid.Column="1">
                                 <Image Source="{Binding ImagePath}" Stretch="Fill" Width="auto" Height="53" Margin="1" VerticalAlignment="Top"/>
                                 <TextBlock Width="auto" Height="10" Text="{Binding Name}" FontSize="8" Margin="0" TextAlignment="Center"/>
                             </StackPanel>
-                            <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                                <Ellipse Width="3" Height="3" Fill="#000000" Grid.Column="2"/>
-                            </StackPanel>
+                            <ListBox Grid.Column="2" VerticalAlignment="Stretch" 
+                                      ItemsSource="{Binding Outputs}"
+                                      SelectedItem="{Binding SelectedConnection}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Ellipse Width="6" Height="6" Fill="#000000" 
+                                                 Loaded="Ellipse_Loaded"/>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
                         </Grid>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type vmf:LineFigureViewModel}">

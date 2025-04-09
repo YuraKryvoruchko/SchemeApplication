@@ -84,11 +84,12 @@ namespace SchemeApplication.ViewModels
         private void OnCreateBlockCommandExecuted(object parameter)
         {
             Point point = (Point)parameter;
-            BlockFigureViewModel blockFigureViewModel = new BlockFigureViewModel()
+            Block blockConfig = TestData.BlockConfigs[_selectedListBlock.IndexOfBlockConfig];
+            BlockFigureViewModel blockFigureViewModel = new BlockFigureViewModel(blockConfig.InputsCount, blockConfig.OutputsCount)
             {
                 Position = point,
-                Name = TestData.BlockConfigs[_selectedListBlock.IndexOfBlockConfig].Name,
-                ImagePath = TestData.BlockConfigs[_selectedListBlock.IndexOfBlockConfig].Image
+                Name = blockConfig.Name,
+                ImagePath = blockConfig.Image
             };
             blockFigureViewModel.OnSelectedInput += HandleConnectionSelection;
             CanvasObjects.Add(blockFigureViewModel);

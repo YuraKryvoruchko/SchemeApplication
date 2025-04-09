@@ -23,7 +23,7 @@ namespace SchemeApplication.Data
         {
             new Block() { InputBlocks = null, Name = "AND", InputsCount = 2, OutputsCount = 1 },
             new Block() { InputBlocks = null, Name = "OR", InputsCount = 2, OutputsCount = 1 },
-            new Block() { InputBlocks = null, Name = "NOT", InputsCount = 2, OutputsCount = 1 },
+            new Block() { InputBlocks = null, Name = "NOT", InputsCount = 1, OutputsCount = 1 },
         };
 
         public static IReadOnlyList<Block> BlockConfigs { get => _blockList; }
