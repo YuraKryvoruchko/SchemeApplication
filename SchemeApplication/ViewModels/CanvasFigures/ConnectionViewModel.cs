@@ -7,9 +7,10 @@ namespace SchemeApplication.ViewModels.CanvasFigures
     {
         #region Properties
 
-        public BlockFigureViewModel SourceBlock { get; set; }
-        public BlockFigureViewModel Block { get; set; }
+        public required BlockFigureViewModel SourceBlock { get; set; }
         public int Number { get; set; }
+
+        public ConnectionViewModel? ConnectedConnection { get; set; }
 
         #region Position
 

@@ -1,12 +1,12 @@
-﻿using SchemeApplication.Models;
+﻿using SchemeApplication.ViewModels.CanvasFigures;
 
 namespace SchemeApplication.Infrastructure.BlockLogics.Base
 {
     internal abstract class BlockLogic
     {
-        protected Block Block { get; }
+        protected BlockFigureViewModel Block { get; }
 
-        public BlockLogic(Block block)
+        public BlockLogic(BlockFigureViewModel block)
         {
             Block = block;
         }

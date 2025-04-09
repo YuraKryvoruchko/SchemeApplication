@@ -1,13 +1,13 @@
 ﻿using SchemeApplication.Infrastructure.BlockLogics.Base;
-using SchemeApplication.Models;
+using SchemeApplication.ViewModels.CanvasFigures;
 
 namespace SchemeApplication.Infrastructure.BlockLogics
 {
-    internal class OrBlockLogic(Block block) : BlockLogic(block)
+    internal class OrBlockLogic(BlockFigureViewModel block) : BlockLogic(block)
     {
         public override bool Execute()
         {
-            return Block.InputBlocks[0].Logic.Execute() || Block.InputBlocks[1].Logic.Execute();
+            return Block.Execute(0) || Block.Execute(1);
         }
     }
 }

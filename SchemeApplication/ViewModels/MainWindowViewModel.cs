@@ -127,6 +127,9 @@ namespace SchemeApplication.ViewModels
                 };
                 CanvasObjects.Add(lineFigureViewModel);
 
+                _firstConnection.ConnectedConnection = _secondConnection;
+                _secondConnection.ConnectedConnection = _firstConnection;
+
                 _firstConnection = _secondConnection = null;
             }
         }

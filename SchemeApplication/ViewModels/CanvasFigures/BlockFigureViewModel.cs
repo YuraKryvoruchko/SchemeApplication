@@ -1,10 +1,17 @@
 ﻿using SchemeApplication.ViewModels.CanvasFigures.Base;
+using SchemeApplication.Infrastructure.BlockLogics.Base;
 using System.Windows;
 
 namespace SchemeApplication.ViewModels.CanvasFigures
 {
     internal class BlockFigureViewModel : FigureBaseViewModel
     {
+        #region Fields
+
+        private readonly BlockLogic _blockLogic;
+
+        #endregion
+
         #region Properties
 
         #region Name
@@ -27,30 +34,6 @@ namespace SchemeApplication.ViewModels.CanvasFigures
         {
             get { return _imagePath; }
             set { Set(ref _imagePath, value); }
-        }
-
-        #endregion
-
-        #region InputCount
-
-        private int _inputCount;
-
-        public int InputCount
-        {
-            get { return _inputCount; }
-            set { Set(ref _inputCount, value); }
-        }
-
-        #endregion
-
-        #region OutputCount
-
-        private int _outputCount;
-
-        public int OutputCount
-        {
-            get { return _outputCount; }
-            set { Set(ref _outputCount, value); }
         }
 
         #endregion
@@ -106,7 +89,7 @@ namespace SchemeApplication.ViewModels.CanvasFigures
 
         #endregion
 
-        public BlockFigureViewModel(int inputCount, int outputCount)
+        public BlockFigureViewModel(int inputCount, int outputCount, BlockLogic blockLogic = null)
         {
             Inputs = new List<ConnectionViewModel>();
             for(int i = 0; i < inputCount; i++)
@@ -119,7 +102,7 @@ namespace SchemeApplication.ViewModels.CanvasFigures
             {
                 Outputs.Add(new ConnectionViewModel() { SourceBlock = this, Number = i });
             }
-
+            _blockLogic = blockLogic;
             this.OnChangePosition += HandleBlockMove;
         }
         ~BlockFigureViewModel()
@@ -129,13 +112,15 @@ namespace SchemeApplication.ViewModels.CanvasFigures
 
         public void ConnectBlock(BlockFigureViewModel block, int number)
         {
-            Inputs[number].Block = block;
+            throw new NotImplementedException();
         }
         public BlockFigureViewModel DisconnectBlock(int number)
         {
-            BlockFigureViewModel block = Inputs[number].Block;
-            Inputs[number].Block = null;
-            return block;
+            throw new NotImplementedException();
+        }
+        public bool Execute(int number)
+        {
+            return true;
         }
 
         private void HandleBlockMove(Point oldValue, Point newValue)
