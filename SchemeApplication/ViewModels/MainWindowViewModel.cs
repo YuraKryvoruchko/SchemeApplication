@@ -7,6 +7,7 @@ using SchemeApplication.Infrastructure.Commands;
 using SchemeApplication.Data;
 using System.Windows.Data;
 using SchemeApplication.ViewModels.CanvasFigures;
+using SchemeApplication.ViewModels.CanvasFigures.Base;
 
 namespace SchemeApplication.ViewModels
 {
@@ -36,14 +37,14 @@ namespace SchemeApplication.ViewModels
 
         #endregion
 
-        #region Selected Block
+        #region Selected Figure
 
-        private BlockViewModel _selectedBlock;        
+        private FigureBaseViewModel? _selectedFigure;        
 
-        public BlockViewModel SelectedBlock
+        public FigureBaseViewModel? SelectedFigure
         {
-            get { return _selectedBlock; }
-            set { Set(ref _selectedBlock, value); }
+            get { return _selectedFigure; }
+            set { Set(ref _selectedFigure, value); }
         }
 
 
@@ -102,6 +103,23 @@ namespace SchemeApplication.ViewModels
 
         #endregion
 
+        #region Delete Figure Command
+
+        public ICommand DeleteFigureCommand { get; }
+
+        private void OnDeleteFigureCommandExecuted(object parameter)
+        {
+            CanvasObjects.Remove(_selectedFigure);
+            _selectedFigure?.Destroy();
+            SelectedFigure = null;
+        }
+        private bool CanDeleteBlockCommandExecuted(object parameter)
+        {
+            return _selectedFigure != null;
+        }
+
+        #endregion
+
         #endregion
 
         public MainWindowViewModel()
@@ -109,6 +127,7 @@ namespace SchemeApplication.ViewModels
             ListBlocks = new ObservableCollection<ListBlock>(TestData.ListBlocks);
             CanvasObjects = new CompositeCollection();
             CreateBlockCommand = new LambdaCommand(OnCreateBlockCommandExecuted, CanCreateBlockCommandExecuted);
+            DeleteFigureCommand = new LambdaCommand(OnDeleteFigureCommandExecuted, CanDeleteBlockCommandExecuted);
         }
 
         private void HandleConnectionSelection(ConnectionViewModel connection)

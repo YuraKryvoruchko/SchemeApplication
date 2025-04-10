@@ -1,5 +1,6 @@
 ﻿using SchemeApplication.ViewModels;
 using SchemeApplication.ViewModels.CanvasFigures;
+using SchemeApplication.ViewModels.CanvasFigures.Base;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -31,6 +32,14 @@ namespace SchemeApplication
             ConnectionViewModel connection = ellipse.DataContext as ConnectionViewModel;
             Point point = ellipse.TranslatePoint(new Point(0, 0), ItemsCanvas.Canvas);
             connection.Position = point;
+        }
+
+        private void DraggableContentControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (DataContext is MainWindowViewModel viewModel && sender is FrameworkElement element)
+            {
+                viewModel.SelectedFigure = (FigureBaseViewModel)element.DataContext;
+            }
         }
     }
 }

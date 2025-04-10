@@ -1,5 +1,4 @@
 ﻿using SchemeApplication.ViewModels.Base;
-using System.Runtime.CompilerServices;
 using System.Windows;
 
 namespace SchemeApplication.ViewModels.CanvasFigures.Base
@@ -41,6 +40,12 @@ namespace SchemeApplication.ViewModels.CanvasFigures.Base
         #region Events
 
         public event Action<Point, Point> OnChangePosition;
+
+        #endregion
+
+        #region Public Methods
+
+        public virtual void Destroy() { }
 
         #endregion
     }

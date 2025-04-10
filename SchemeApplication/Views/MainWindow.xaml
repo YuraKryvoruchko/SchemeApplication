@@ -14,6 +14,10 @@
         <vm:MainWindowViewModel/>
     </Window.DataContext>
 
+    <Window.InputBindings>
+        <KeyBinding Key="Delete" Command="{Binding DeleteFigureCommand}"/>
+    </Window.InputBindings>
+    
     <Grid Background="#d8dee9">
         <Border BorderBrush="#545557" BorderThickness="2">
             <Grid Background="#4b4c4e" Width="150" HorizontalAlignment="Left">
@@ -112,6 +116,7 @@
                     <Style TargetType="controls:DraggableContentControl">
                         <Setter Property="Position" Value="{Binding Position, Mode=TwoWay}"/>
                         <Setter Property="IsDraggable" Value="{Binding IsDraggable}"/>
+                        <EventSetter Event="MouseLeftButtonDown" Handler="DraggableContentControl_MouseLeftButtonDown"/>
                     </Style>
                 </controls:ItemsCanvas.ItemContainerStyle>
                 <controls:ItemsCanvas.ItemsPanel>
