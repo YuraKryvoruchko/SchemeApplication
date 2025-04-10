@@ -122,7 +122,9 @@
                 <controls:ItemsCanvas.ItemsPanel>
                     <ItemsPanelTemplate>
                         <Canvas x:Name="Canvas" Background="#ffffff" ClipToBounds="True"
-                                MouseLeftButtonDown="Canvas_MouseLeftButtonDown"/>
+                                MouseLeftButtonDown="Canvas_MouseLeftButtonDown"
+                                MouseMove="Canvas_MouseMove"
+                                MouseLeftButtonUp="Canvas_MouseLeftButtonUp"/>
                     </ItemsPanelTemplate>
                 </controls:ItemsCanvas.ItemsPanel>
             </controls:ItemsCanvas>
