@@ -81,6 +81,7 @@ namespace SchemeApplication.Views.Controls
 
         protected override void OnIsMouseCapturedChanged(DependencyPropertyChangedEventArgs e)
         {
+            Trace.WriteLine($"Capture value: {e.NewValue}");
             this.IsDragActive = (bool)e.NewValue;
             base.OnIsMouseCapturedChanged(e);
         }
@@ -109,14 +110,18 @@ namespace SchemeApplication.Views.Controls
             this.DragOffset = new Point(
               relativeDragStartPosition.X - Canvas.GetLeft(this),
               relativeDragStartPosition.Y - Canvas.GetTop(this));
-            
-            CaptureMouse();
+
+            Mouse.Capture(this, CaptureMode.SubTree);
         }
 
         private void CompleteDrag_OnLeftMouseButtonUp(object sender, MouseButtonEventArgs e)
         {
-            this.IsDragActive = false;
-            ReleaseMouseCapture();
+            Trace.WriteLine("CompleteDrag_OnLeftMouseButtonUp");
+            if (IsDragActive)
+            {
+                this.IsDragActive = false;
+                Mouse.Capture(null);
+            }
         }
 
         private void Drag_OnMouseMove(object sender, MouseEventArgs e)

@@ -95,27 +95,5 @@ namespace SchemeApplication
                 viewModel.SelectedFigure = (FigureBaseViewModel)element.DataContext;
             }
         }
-
-        private void Button_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            Button? button = sender as Button;
-            if (button != null)
-            {
-                button.CaptureMouse();
-                e.Handled = true;
-                Trace.WriteLine("Button_PreviewMouseLeftButtonDown");
-            }
-        }
-        private void Button_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            Button? button = sender as Button;
-            if (button != null && button.Command.CanExecute(button.CommandParameter))
-            {
-                button.ReleaseMouseCapture();
-                e.Handled = true;
-                Trace.WriteLine("Button_PreviewMouseLeftButtonUp");
-                button.Command.Execute(button.CommandParameter);
-            }
-        }
     }
 }
