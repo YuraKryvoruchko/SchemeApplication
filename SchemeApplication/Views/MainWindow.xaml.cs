@@ -2,6 +2,7 @@
 using SchemeApplication.ViewModels.CanvasFigures;
 using SchemeApplication.ViewModels.CanvasFigures.Base;
 using SchemeApplication.Views.Controls;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -25,19 +26,28 @@ namespace SchemeApplication
 
         private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if(DataContext is MainWindowViewModel viewModel && viewModel.CreateBlockCommand.CanExecute(null))
+            Trace.WriteLine("Canvas_MouseLeftButtonDown");
+            if (DataContext is MainWindowViewModel viewModel && viewModel.CreateBlockCommand.CanExecute(null))
             {
                 viewModel.CreateBlockCommand.Execute(e.GetPosition(sender as Canvas));
             }
-            else
+            return;
+            //need fix
+            if(Mouse.Captured != null && Mouse.Captured != ItemsCanvas.Canvas)
             {
+                return;
+            }
+            if (ItemsCanvas.Canvas.CaptureMouse())
+            {
+                Trace.WriteLine("CaptureMouse");
                 _lastMousePosition = e.GetPosition(this);
                 _canvasIsMoved = true;
-                ItemsCanvas.Canvas.CaptureMouse();
             }
         }
         private void Canvas_MouseMove(object sender, MouseEventArgs e)
         {
+            return;
+            //need fix
             if (_canvasIsMoved)
             {
                 Canvas canvas = ItemsCanvas.Canvas;
@@ -48,8 +58,8 @@ namespace SchemeApplication
 
                 foreach (var element in canvas.Children)
                 {
-                    DraggableContentControl contentControl = element as DraggableContentControl;
-                    if (contentControl.IsDraggable)
+                    DraggableContentControl? contentControl = element as DraggableContentControl;
+                    if (contentControl != null && contentControl.IsDraggable)
                     {
                         contentControl.Position += delta;
                     }
@@ -58,14 +68,21 @@ namespace SchemeApplication
         }
         private void Canvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            _canvasIsMoved = false;
-            ItemsCanvas.Canvas.ReleaseMouseCapture();
+            return;
+            //need fix
+            Trace.WriteLine("Canvas_MouseLeftButtonUp");
+            if (_canvasIsMoved)
+            {
+                Trace.WriteLine("_canvasIsMoved");
+                _canvasIsMoved = false;
+                ItemsCanvas.Canvas.ReleaseMouseCapture();
+            }
         }
 
         private void Ellipse_Loaded(object sender, EventArgs e)
         {
-            Ellipse ellipse = (Ellipse)sender;
-            ConnectionViewModel connection = ellipse.DataContext as ConnectionViewModel;
+            FrameworkElement ellipse = (FrameworkElement)sender;
+            ConnectorViewModel connection = ellipse.DataContext as ConnectorViewModel;
             Point point = ellipse.TranslatePoint(new Point(0, 0), ItemsCanvas.Canvas);
             connection.Position = point;
         }
@@ -74,7 +91,30 @@ namespace SchemeApplication
         {
             if (DataContext is MainWindowViewModel viewModel && sender is FrameworkElement element)
             {
+                Trace.WriteLine($"From {typeof(MainWindow)}: Selected figure: {element}");
                 viewModel.SelectedFigure = (FigureBaseViewModel)element.DataContext;
+            }
+        }
+
+        private void Button_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Button? button = sender as Button;
+            if (button != null)
+            {
+                button.CaptureMouse();
+                e.Handled = true;
+                Trace.WriteLine("Button_PreviewMouseLeftButtonDown");
+            }
+        }
+        private void Button_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Button? button = sender as Button;
+            if (button != null && button.Command.CanExecute(button.CommandParameter))
+            {
+                button.ReleaseMouseCapture();
+                e.Handled = true;
+                Trace.WriteLine("Button_PreviewMouseLeftButtonUp");
+                button.Command.Execute(button.CommandParameter);
             }
         }
     }

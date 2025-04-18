@@ -3,14 +3,15 @@ using System.Windows;
 
 namespace SchemeApplication.ViewModels.CanvasFigures
 {
-    internal class ConnectionViewModel : ViewModel
+    internal class ConnectorViewModel : ViewModel
     {
         #region Properties
 
         public required BlockFigureViewModel SourceBlock { get; set; }
         public int Number { get; set; }
 
-        public ConnectionViewModel? ConnectedConnection { get; set; }
+        public ConnectionFigureViewModel? Connection { get; set; }
+        public ConnectorViewModel? ConnectedConnector { get; set; }
 
         #region Position
 

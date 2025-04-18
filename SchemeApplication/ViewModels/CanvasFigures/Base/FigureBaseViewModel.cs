@@ -39,6 +39,7 @@ namespace SchemeApplication.ViewModels.CanvasFigures.Base
 
         #region Events
 
+        public event Action<FigureBaseViewModel> OnDestroy;
         public event Action<Point, Point> OnChangePosition;
 
         #endregion
@@ -46,6 +47,15 @@ namespace SchemeApplication.ViewModels.CanvasFigures.Base
         #region Public Methods
 
         public virtual void Destroy() { }
+
+        #endregion
+
+        #region Protected Methods
+
+        protected void RaiseOnDestroyEvent()
+        {
+            OnDestroy?.Invoke(this);
+        }
 
         #endregion
     }

@@ -20,6 +20,88 @@
     
     <Grid Background="#d8dee9">
         <Border BorderBrush="#545557" BorderThickness="2">
+            <controls:ItemsCanvas x:Name="ItemsCanvas" Margin="150,0,150,0" ItemsSource="{Binding CanvasObjects}">
+                <controls:ItemsCanvas.Resources>
+                    <DataTemplate DataType="{x:Type vmf:BlockFigureViewModel}">
+                        <Grid Background="#545557" Width="100" Height="65">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="15"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="15"/>
+                            </Grid.ColumnDefinitions>
+                            <ItemsControl x:Name="InputConnectors" IsEnabled="True" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                          ItemsSource="{Binding Inputs}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Vertical" Background="Transparent" 
+                                                   VerticalAlignment="Center"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Command="{Binding ElementName=InputConnectors, Path=DataContext.SelectConnectorCommand}" 
+                                                CommandParameter="{Binding}"
+                                                PreviewMouseLeftButtonDown="Button_PreviewMouseLeftButtonDown"
+                                                Margin="0,10,0,10">           
+                                            <Ellipse Width="6" Height="6" Fill="#000000" Loaded="Ellipse_Loaded" IsHitTestVisible="False"/>
+                                        </Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            
+                            <StackPanel Grid.Column="1">
+                                <Image Source="{Binding ImagePath}" Stretch="Fill" Width="auto" Height="53" Margin="1" VerticalAlignment="Top"/>
+                                <TextBlock Width="auto" Height="10" Text="{Binding Name}" FontSize="8" Margin="0" TextAlignment="Center"/>
+                            </StackPanel>
+
+                            <ItemsControl x:Name="OutputConnectors" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                          ItemsSource="{Binding Outputs}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Vertical" 
+                                                 VerticalAlignment="Center"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Command="{Binding ElementName=OutputConnectors, Path=DataContext.SelectConnectorCommand}" 
+                                                CommandParameter="{Binding}"
+                                                PreviewMouseLeftButtonDown="Button_PreviewMouseLeftButtonDown"
+                                                PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp"
+                                                Margin="0,10,0,10">         
+                                            <Ellipse Width="6" Height="6" Fill="#000000" Loaded="Ellipse_Loaded" IsHitTestVisible="False"/>
+                                        </Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Grid>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type vmf:ConnectionFigureViewModel}">
+                        <Line Stroke="Black" StrokeThickness="3" 
+                              X1="{Binding OutputConnector.Position.X}" 
+                              Y1="{Binding OutputConnector.Position.Y}" 
+                              X2="{Binding InputConnector.Position.X}" 
+                              Y2="{Binding InputConnector.Position.Y}"/>
+                    </DataTemplate>
+                </controls:ItemsCanvas.Resources>
+                <controls:ItemsCanvas.ItemContainerStyle>
+                    <Style TargetType="controls:DraggableContentControl">
+                        <Setter Property="Position" Value="{Binding Position, Mode=TwoWay}"/>
+                        <Setter Property="IsDraggable" Value="{Binding IsDraggable}"/>
+                        <EventSetter Event="MouseLeftButtonDown" Handler="DraggableContentControl_MouseLeftButtonDown"/>
+                    </Style>
+                </controls:ItemsCanvas.ItemContainerStyle>
+                <controls:ItemsCanvas.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas x:Name="Canvas" Background="#ffffff" ClipToBounds="True" Width="5000" Height="5000"
+                                MouseLeftButtonDown="Canvas_MouseLeftButtonDown"
+                                MouseMove="Canvas_MouseMove"
+                                MouseLeftButtonUp="Canvas_MouseLeftButtonUp"/>
+                    </ItemsPanelTemplate>
+                </controls:ItemsCanvas.ItemsPanel>
+            </controls:ItemsCanvas>
+        </Border>
+        <Border BorderBrush="#545557" BorderThickness="2">
             <Grid Background="#4b4c4e" Width="150" HorizontalAlignment="Left">
                 <Border BorderBrush="#545557" BorderThickness="2" HorizontalAlignment="Right"/>
                 <ListView Background="#4b4c4e" Width="150" HorizontalAlignment="Left" 
@@ -67,67 +149,6 @@
                     </StackPanel>
                 </Grid>
             </Grid>
-        </Border>
-        <Border BorderBrush="#545557" BorderThickness="2">
-            <controls:ItemsCanvas x:Name="ItemsCanvas" Margin="150,0,150,0" ItemsSource="{Binding CanvasObjects}">
-                <controls:ItemsCanvas.Resources>
-                    <DataTemplate DataType="{x:Type vmf:BlockFigureViewModel}">
-                        <Grid Background="#545557" Width="100" Height="65">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="15"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="15"/>
-                            </Grid.ColumnDefinitions>
-                            <ListBox Grid.Column="0" VerticalAlignment="Stretch" 
-                                      ItemsSource="{Binding Inputs}"
-                                      SelectedItem="{Binding SelectedConnection}">
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <Ellipse Width="6" Height="6" Fill="#000000" 
-                                                 Loaded="Ellipse_Loaded"/>
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox>
-                            <StackPanel Grid.Column="1">
-                                <Image Source="{Binding ImagePath}" Stretch="Fill" Width="auto" Height="53" Margin="1" VerticalAlignment="Top"/>
-                                <TextBlock Width="auto" Height="10" Text="{Binding Name}" FontSize="8" Margin="0" TextAlignment="Center"/>
-                            </StackPanel>
-                            <ListBox Grid.Column="2" VerticalAlignment="Stretch" 
-                                      ItemsSource="{Binding Outputs}"
-                                      SelectedItem="{Binding SelectedConnection}">
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <Ellipse Width="6" Height="6" Fill="#000000" 
-                                                 Loaded="Ellipse_Loaded"/>
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox>
-                        </Grid>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type vmf:LineFigureViewModel}">
-                        <Line Stroke="Black" StrokeThickness="3" 
-                              X1="{Binding OutputConnection.Position.X}" 
-                              Y1="{Binding OutputConnection.Position.Y}" 
-                              X2="{Binding InputConnection.Position.X}" 
-                              Y2="{Binding InputConnection.Position.Y}"/>
-                    </DataTemplate>
-                </controls:ItemsCanvas.Resources>
-                <controls:ItemsCanvas.ItemContainerStyle>
-                    <Style TargetType="controls:DraggableContentControl">
-                        <Setter Property="Position" Value="{Binding Position, Mode=TwoWay}"/>
-                        <Setter Property="IsDraggable" Value="{Binding IsDraggable}"/>
-                        <EventSetter Event="MouseLeftButtonDown" Handler="DraggableContentControl_MouseLeftButtonDown"/>
-                    </Style>
-                </controls:ItemsCanvas.ItemContainerStyle>
-                <controls:ItemsCanvas.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <Canvas x:Name="Canvas" Background="#ffffff" ClipToBounds="True"
-                                MouseLeftButtonDown="Canvas_MouseLeftButtonDown"
-                                MouseMove="Canvas_MouseMove"
-                                MouseLeftButtonUp="Canvas_MouseLeftButtonUp"/>
-                    </ItemsPanelTemplate>
-                </controls:ItemsCanvas.ItemsPanel>
-            </controls:ItemsCanvas>
         </Border>
     </Grid>
 </Window>

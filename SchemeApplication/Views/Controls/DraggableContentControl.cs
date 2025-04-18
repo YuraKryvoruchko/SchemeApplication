@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -43,11 +44,13 @@ namespace SchemeApplication.Views.Controls
 
         #endregion
 
-        #endregion
-
         private IInputElement ParentInputElement { get; set; }
         private bool IsDragActive { get; set; }
         private Point DragOffset { get; set; }
+
+        #endregion
+
+        #region Constructors
 
         public DraggableContentControl()
         {
@@ -57,13 +60,14 @@ namespace SchemeApplication.Views.Controls
             this.RenderTransformOrigin = new Point(0.5, 0.5);
         }
 
+        #endregion
+
         #region Overrides of FrameworkElement
 
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
-            // Parent is required to calculate the relative mouse coordinates.
             DependencyObject parentControl = this.Parent;
             if (parentControl == null
                 && !TryFindParentElement(this, out parentControl)
@@ -75,10 +79,20 @@ namespace SchemeApplication.Views.Controls
             this.ParentInputElement = parentControl as IInputElement;
         }
 
+        protected override void OnIsMouseCapturedChanged(DependencyPropertyChangedEventArgs e)
+        {
+            this.IsDragActive = (bool)e.NewValue;
+            base.OnIsMouseCapturedChanged(e);
+        }
+
         #endregion
+
+        #region Private Methods
 
         private void InitializeDrag_OnLeftMouseButtonDown(object sender, MouseButtonEventArgs e)
         {
+            Trace.WriteLine("InitializeDrag_OnLeftMouseButtonDown");
+
             if (!IsDraggable)
             {
                 return;
@@ -95,7 +109,7 @@ namespace SchemeApplication.Views.Controls
             this.DragOffset = new Point(
               relativeDragStartPosition.X - Canvas.GetLeft(this),
               relativeDragStartPosition.Y - Canvas.GetTop(this));
-
+            
             CaptureMouse();
         }
 
@@ -138,5 +152,7 @@ namespace SchemeApplication.Views.Controls
 
             return TryFindParentElement(parentElement, out resultElement);
         }
+
+        #endregion
     }
 }

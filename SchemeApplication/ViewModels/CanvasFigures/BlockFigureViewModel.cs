@@ -1,6 +1,9 @@
 ﻿using SchemeApplication.ViewModels.CanvasFigures.Base;
 using SchemeApplication.Infrastructure.BlockLogics.Base;
 using System.Windows;
+using System.Windows.Input;
+using SchemeApplication.Infrastructure.Commands;
+using System.Diagnostics;
 
 namespace SchemeApplication.ViewModels.CanvasFigures
 {
@@ -40,9 +43,9 @@ namespace SchemeApplication.ViewModels.CanvasFigures
 
         #region Inputs
 
-        private List<ConnectionViewModel> _inputs;
+        private List<ConnectorViewModel> _inputs;
 
-        public List<ConnectionViewModel> Inputs
+        public List<ConnectorViewModel> Inputs
         {
             get { return _inputs; }
             set { Set(ref _inputs, value); }
@@ -52,9 +55,9 @@ namespace SchemeApplication.ViewModels.CanvasFigures
 
         #region Outputs
 
-        private List<ConnectionViewModel> _outputs;
+        private List<ConnectorViewModel> _outputs;
 
-        public List<ConnectionViewModel> Outputs
+        public List<ConnectorViewModel> Outputs
         {
             get { return _outputs; }
             set { Set(ref _outputs, value); }
@@ -62,16 +65,16 @@ namespace SchemeApplication.ViewModels.CanvasFigures
 
         #endregion
 
-        #region Selected Connection 
+        #region Selected Connector 
 
-        private ConnectionViewModel? _selectedConnection;
+        private ConnectorViewModel? _selectedConnector;
 
-        public ConnectionViewModel? SelectedConnection
+        public ConnectorViewModel? SelectedConnector
         {
-            get { return _selectedConnection; }
+            get { return _selectedConnector; }
             set 
             { 
-                Set(ref _selectedConnection, value); 
+                Set(ref _selectedConnector, value); 
                 if(value != null)
                 {
                     OnSelectedInput?.Invoke(value);
@@ -81,26 +84,61 @@ namespace SchemeApplication.ViewModels.CanvasFigures
 
         #endregion
 
+        #region Attached Connections
+
+        private List<ConnectionFigureViewModel> _attachedConnections;
+
+        public List <ConnectionFigureViewModel> AttachedConnections
+        {
+            get { return _attachedConnections; }
+        }
+
+        #endregion
+
         #endregion
 
         #region Events
 
-        public event Action<ConnectionViewModel> OnSelectedInput;
+        public event Action<ConnectorViewModel> OnSelectedInput;
+
+        #endregion
+
+        #region Commands
+
+        #region Select Connector Command
+
+        public ICommand SelectConnectorCommand { get; }
+
+        private void OnSelectConnectorCommandExecuted(object parameter)
+        {
+            Trace.WriteLine(1);
+            SelectedConnector  = (ConnectorViewModel)parameter;
+        }
+        private bool CanSelectConnectorCommandExecute(object parameter)
+        {
+            Trace.WriteLine(2);
+            return true;
+        }
+
+        #endregion
 
         #endregion
 
         public BlockFigureViewModel(int inputCount, int outputCount, BlockLogic blockLogic = null)
         {
-            Inputs = new List<ConnectionViewModel>();
+            SelectConnectorCommand = new LambdaCommand(OnSelectConnectorCommandExecuted, CanSelectConnectorCommandExecute);
+
+            _attachedConnections = new List<ConnectionFigureViewModel>();
+            Inputs = new List<ConnectorViewModel>();
             for(int i = 0; i < inputCount; i++)
             {
-                Inputs.Add(new ConnectionViewModel() { SourceBlock = this, Number = i });
+                Inputs.Add(new ConnectorViewModel() { SourceBlock = this, Number = i });
             }
 
-            Outputs = new List<ConnectionViewModel>();
+            Outputs = new List<ConnectorViewModel>();
             for (int i = 0; i < outputCount; i++)
             {
-                Outputs.Add(new ConnectionViewModel() { SourceBlock = this, Number = i });
+                Outputs.Add(new ConnectorViewModel() { SourceBlock = this, Number = i });
             }
             _blockLogic = blockLogic;
             this.OnChangePosition += HandleBlockMove;
@@ -110,13 +148,21 @@ namespace SchemeApplication.ViewModels.CanvasFigures
             this.OnChangePosition -= HandleBlockMove;
         }
 
-        public void ConnectBlock(BlockFigureViewModel block, int number)
+        public void ConnectToBlock(BlockFigureViewModel block, int number)
         {
             throw new NotImplementedException();
         }
         public BlockFigureViewModel DisconnectBlock(int number)
         {
             throw new NotImplementedException();
+        }
+        public override void Destroy()
+        {
+            foreach(var attachedConnection in _attachedConnections)
+            {
+                attachedConnection.Destroy();
+            }
+            RaiseOnDestroyEvent();
         }
         public bool Execute(int number)
         {
