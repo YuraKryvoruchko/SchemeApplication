@@ -65,81 +65,26 @@ namespace SchemeApplication.ViewModels.CanvasFigures
 
         #endregion
 
-        #region Selected Connector 
-
-        private ConnectorViewModel? _selectedConnector;
-
-        public ConnectorViewModel? SelectedConnector
-        {
-            get { return _selectedConnector; }
-            set 
-            { 
-                Set(ref _selectedConnector, value); 
-                if(value != null)
-                {
-                    OnSelectedInput?.Invoke(value);
-                }
-            }
-        }
-
         #endregion
 
-        #region Attached Connections
-
-        private List<ConnectionFigureViewModel> _attachedConnections;
-
-        public List <ConnectionFigureViewModel> AttachedConnections
-        {
-            get { return _attachedConnections; }
-        }
-
-        #endregion
-
-        #endregion
-
-        #region Events
-
-        public event Action<ConnectorViewModel> OnSelectedInput;
-
-        #endregion
-
-        #region Commands
-
-        #region Select Connector Command
-
-        public ICommand SelectConnectorCommand { get; }
-
-        private void OnSelectConnectorCommandExecuted(object parameter)
-        {
-            Trace.WriteLine(1);
-            SelectedConnector  = (ConnectorViewModel)parameter;
-        }
-        private bool CanSelectConnectorCommandExecute(object parameter)
-        {
-            Trace.WriteLine(2);
-            return true;
-        }
-
-        #endregion
-
-        #endregion
+        #region Constructors and destructor
 
         public BlockFigureViewModel(int inputCount, int outputCount, BlockLogic blockLogic = null)
         {
-            SelectConnectorCommand = new LambdaCommand(OnSelectConnectorCommandExecuted, CanSelectConnectorCommandExecute);
-
-            _attachedConnections = new List<ConnectionFigureViewModel>();
-            Inputs = new List<ConnectorViewModel>();
-            for(int i = 0; i < inputCount; i++)
+            _inputs = new List<ConnectorViewModel>();
+            for (int i = 0; i < inputCount; i++)
             {
-                Inputs.Add(new ConnectorViewModel() { SourceBlock = this, Number = i });
+                _inputs.Add(new ConnectorViewModel() { SourceBlock = this, Number = i });
             }
+            Inputs = _inputs;
 
-            Outputs = new List<ConnectorViewModel>();
+            _outputs = new List<ConnectorViewModel>();
             for (int i = 0; i < outputCount; i++)
             {
-                Outputs.Add(new ConnectorViewModel() { SourceBlock = this, Number = i });
+                _outputs.Add(new ConnectorViewModel() { SourceBlock = this, Number = i });
             }
+            Outputs = _outputs;
+
             _blockLogic = blockLogic;
             this.OnChangePosition += HandleBlockMove;
         }
@@ -147,6 +92,22 @@ namespace SchemeApplication.ViewModels.CanvasFigures
         {
             this.OnChangePosition -= HandleBlockMove;
         }
+
+        #endregion
+        
+        #region Public overrided methods
+
+        public override void Destroy()
+        {
+            foreach (var input in _inputs) input.Connection?.Destroy();
+            foreach (var output in _outputs) output.Connection?.Destroy();
+
+            RaiseOnDestroyEvent();
+        }
+
+        #endregion
+
+        #region Public methods
 
         public void ConnectToBlock(BlockFigureViewModel block, int number)
         {
@@ -156,18 +117,14 @@ namespace SchemeApplication.ViewModels.CanvasFigures
         {
             throw new NotImplementedException();
         }
-        public override void Destroy()
-        {
-            foreach(var attachedConnection in _attachedConnections)
-            {
-                attachedConnection.Destroy();
-            }
-            RaiseOnDestroyEvent();
-        }
         public bool Execute(int number)
         {
             return true;
         }
+
+        #endregion
+
+        #region Private methods
 
         private void HandleBlockMove(Point oldValue, Point newValue)
         {
@@ -182,5 +139,7 @@ namespace SchemeApplication.ViewModels.CanvasFigures
                 connection.Position += vector;
             }
         }
+
+        #endregion
     }
 }

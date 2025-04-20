@@ -15,8 +15,8 @@ namespace SchemeApplication.ViewModels
     {
         #region Fields
 
-        private ConnectorViewModel? _firstConnector;
-        private ConnectorViewModel? _secondConnector;
+        private ConnectorViewModel? _inputConnector;
+        private ConnectorViewModel? _outputConnector;
 
         #endregion
 
@@ -92,9 +92,7 @@ namespace SchemeApplication.ViewModels
                 Name = blockConfig.Name,
                 ImagePath = blockConfig.Image
             };
-
             blockFigureViewModel.OnDestroy += HandleDeletingFigure;
-            blockFigureViewModel.OnSelectedInput += HandleConnectionSelection;
 
             CanvasObjects.Add(blockFigureViewModel);
             SelectedListBlock = null;
@@ -122,45 +120,95 @@ namespace SchemeApplication.ViewModels
 
         #endregion
 
+        #region Set Input Connector
+
+        public ICommand SetInputConnectorCommand { get; }
+
+        private void OnSetInputConnectorCommandExecute(object parameter)
+        {
+            if (parameter is not ConnectorViewModel connector) throw new ArgumentException();
+
+            _inputConnector = connector;
+            TryConnectBlocks();
+        }
+
+        private bool CanSetInputConnectorCommandExecuted(object parameter)
+        {
+            return CanSetConnector(_outputConnector, parameter);
+        }
+
         #endregion
+
+        #region Set Output Connector
+
+        public ICommand SetOutputConnectorCommand { get; }
+
+        private void OnSetOutputConnectorCommandExecute(object parameter)
+        {
+            if (parameter is not ConnectorViewModel connector) throw new ArgumentException();
+
+            _outputConnector = connector;
+            TryConnectBlocks();
+        }
+
+        private bool CanSetOutputConnectorCommandExecuted(object parameter)
+        {
+            return CanSetConnector(_inputConnector, parameter);
+        }
+
+
+        #endregion
+
+        #endregion
+
+        #region Contructors
 
         public MainWindowViewModel()
         {
             ListBlocks = new ObservableCollection<ListBlock>(TestData.ListBlocks);
             CanvasObjects = new CompositeCollection();
+
             CreateBlockCommand = new LambdaCommand(OnCreateBlockCommandExecuted, CanCreateBlockCommandExecuted);
             DeleteFigureCommand = new LambdaCommand(OnDeleteFigureCommandExecuted, CanDeleteBlockCommandExecuted);
+            SetInputConnectorCommand = new LambdaCommand(OnSetInputConnectorCommandExecute, CanSetInputConnectorCommandExecuted);
+            SetOutputConnectorCommand = new LambdaCommand(OnSetOutputConnectorCommandExecute, CanSetOutputConnectorCommandExecuted);
         }
 
+        #endregion
+
+        #region Private Methods
+
+        private bool CanSetConnector(ConnectorViewModel? from, object toParameter)
+        {
+            if (toParameter == null) return false;
+            if (toParameter is not ConnectorViewModel connector) throw new ArgumentException();
+            if (connector.Connection is not null) return false;
+
+            return from == null ? true : from.SourceBlock != connector.SourceBlock;
+        }
+        private void TryConnectBlocks()
+        {
+            if(_inputConnector != null && _outputConnector != null)
+            {
+                ConnectionFigureViewModel connection = new ConnectionFigureViewModel()
+                {
+                    InputConnector = _inputConnector,
+                    OutputConnector = _outputConnector
+                };
+                connection.OnDestroy += HandleDeletingFigure;
+
+                _inputConnector.Connection = connection;
+                _outputConnector.Connection = connection;
+                _inputConnector = _outputConnector = null;
+
+                CanvasObjects.Add(connection);
+            }
+        }
         private void HandleDeletingFigure(FigureBaseViewModel figureBaseViewModel)
         {
             CanvasObjects.Remove(figureBaseViewModel);
         }
-        private void HandleConnectionSelection(ConnectorViewModel connection)
-        {
-            if (_firstConnector == null)
-            {
-                _firstConnector = connection;
-            }
-            else if (_secondConnector == null)
-            {
-                _secondConnector = connection;
-                ConnectionFigureViewModel connectionViewModel = new ConnectionFigureViewModel()
-                {
-                    InputConnector = _firstConnector,
-                    OutputConnector = _secondConnector
-                };
-                connectionViewModel.OnDestroy += HandleDeletingFigure;
 
-                CanvasObjects.Add(connectionViewModel);
-
-                _firstConnector.ConnectedConnector = _secondConnector;
-                _firstConnector.SourceBlock.AttachedConnections.Add(connectionViewModel);
-                _secondConnector.ConnectedConnector = _firstConnector;
-                _secondConnector.SourceBlock.AttachedConnections.Add(connectionViewModel);
-
-                _firstConnector = _secondConnector = null;
-            }
-        }
+        #endregion
     }
 }

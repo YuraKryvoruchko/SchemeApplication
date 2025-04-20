@@ -39,8 +39,8 @@
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Button Command="{Binding ElementName=InputConnectors, Path=DataContext.SelectConnectorCommand}" 
-                                                CommandParameter="{Binding}"
+                                        <Button CommandParameter="{Binding}"
+                                                Command="{Binding ElementName=ItemsCanvas, Path=DataContext.SetInputConnectorCommand}" 
                                                 Margin="0,10,0,10">           
                                             <Ellipse Width="6" Height="6" Fill="#000000" Loaded="Ellipse_Loaded" IsHitTestVisible="False"/>
                                         </Button>
@@ -63,8 +63,8 @@
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Button Command="{Binding ElementName=OutputConnectors, Path=DataContext.SelectConnectorCommand}" 
-                                                CommandParameter="{Binding}"
+                                        <Button CommandParameter="{Binding}"
+                                                Command="{Binding ElementName=ItemsCanvas, Path=DataContext.SetOutputConnectorCommand}" 
                                                 Margin="0,10,0,10">         
                                             <Ellipse Width="6" Height="6" Fill="#000000" Loaded="Ellipse_Loaded" IsHitTestVisible="False"/>
                                         </Button>
