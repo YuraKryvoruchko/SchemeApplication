@@ -4,12 +4,7 @@ namespace SchemeApplication.Infrastructure.BlockLogics.Base
 {
     internal abstract class BlockLogic
     {
-        protected BlockFigureViewModel Block { get; }
-
-        public BlockLogic(BlockFigureViewModel block)
-        {
-            Block = block;
-        }
+        public BlockFigureViewModel? Block { get; set; }
 
         public abstract bool Execute();
     }

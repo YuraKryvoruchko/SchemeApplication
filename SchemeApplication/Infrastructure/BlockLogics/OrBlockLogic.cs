@@ -3,11 +3,18 @@ using SchemeApplication.ViewModels.CanvasFigures;
 
 namespace SchemeApplication.Infrastructure.BlockLogics
 {
-    internal class OrBlockLogic(BlockFigureViewModel block) : BlockLogic(block)
+    internal class OrBlockLogic : BlockLogic
     {
         public override bool Execute()
         {
-            return Block.Execute(0) || Block.Execute(1);
+            BlockFigureViewModel? firstBlock = Block?.TryGetConnectedBlockOrNull(0);
+            BlockFigureViewModel? secondBlock = Block?.TryGetConnectedBlockOrNull(1);
+            if (firstBlock == null || secondBlock == null)
+            {
+                throw new Exception();
+            }
+
+            return firstBlock.Execute() || secondBlock.Execute();
         }
     }
 }

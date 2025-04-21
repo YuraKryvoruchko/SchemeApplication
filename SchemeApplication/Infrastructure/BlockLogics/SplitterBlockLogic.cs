@@ -3,11 +3,17 @@ using SchemeApplication.ViewModels.CanvasFigures;
 
 namespace SchemeApplication.Infrastructure.BlockLogics
 {
-    internal class SplitterBlockLogic(BlockFigureViewModel block) : BlockLogic(block)
+    internal class SplitterBlockLogic : BlockLogic
     {
         public override bool Execute()
         {
-            return Block.Execute(0);
+            BlockFigureViewModel? firstBlock = Block?.TryGetConnectedBlockOrNull(0);
+            if (firstBlock == null)
+            {
+                throw new Exception();
+            }
+
+            return firstBlock.Execute();
         }
     }
 }

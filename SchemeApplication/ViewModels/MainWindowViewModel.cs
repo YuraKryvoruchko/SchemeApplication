@@ -8,6 +8,8 @@ using SchemeApplication.Data;
 using System.Windows.Data;
 using SchemeApplication.ViewModels.CanvasFigures;
 using SchemeApplication.ViewModels.CanvasFigures.Base;
+using SchemeApplication.Infrastructure.BlockLogics.Base;
+using SchemeApplication.Infrastructure.BlockLogics;
 
 namespace SchemeApplication.ViewModels
 {
@@ -23,7 +25,11 @@ namespace SchemeApplication.ViewModels
         #region Properties
 
         public ObservableCollection<ListBlock> ListBlocks { get; }
+
         public CompositeCollection CanvasObjects { get; }
+
+        public List<BlockFigureViewModel> InputBlocks { get; }
+        public List<BlockFigureViewModel> OutputBlocks { get; }
 
         #region Selected List Block
 
@@ -78,7 +84,7 @@ namespace SchemeApplication.ViewModels
 
         #region Commands
 
-        #region CreateBlockCommand
+        #region Create Block Command
 
         public ICommand CreateBlockCommand { get; }
 
@@ -86,7 +92,8 @@ namespace SchemeApplication.ViewModels
         {
             Point point = (Point)parameter;
             Block blockConfig = TestData.BlockConfigs[_selectedListBlock.IndexOfBlockConfig];
-            BlockFigureViewModel blockFigureViewModel = new BlockFigureViewModel(blockConfig.InputsCount, blockConfig.OutputsCount)
+            BlockFigureViewModel blockFigureViewModel = new BlockFigureViewModel(blockConfig.InputsCount, 
+                blockConfig.OutputsCount, GenerateBlockLogic(blockConfig.Type))
             {
                 Position = point,
                 Name = blockConfig.Name,
@@ -167,6 +174,8 @@ namespace SchemeApplication.ViewModels
         {
             ListBlocks = new ObservableCollection<ListBlock>(TestData.ListBlocks);
             CanvasObjects = new CompositeCollection();
+            InputBlocks = new List<BlockFigureViewModel>();
+            OutputBlocks = new List<BlockFigureViewModel>();
 
             CreateBlockCommand = new LambdaCommand(OnCreateBlockCommandExecuted, CanCreateBlockCommandExecuted);
             DeleteFigureCommand = new LambdaCommand(OnDeleteFigureCommandExecuted, CanDeleteBlockCommandExecuted);
@@ -177,6 +186,18 @@ namespace SchemeApplication.ViewModels
         #endregion
 
         #region Private Methods
+
+        private BlockLogic GenerateBlockLogic(BlockType type)
+        {
+            switch (type)
+            {
+                case BlockType.And: return new AndBlockLogic();
+                case BlockType.Or: return new OrBlockLogic();
+                case BlockType.Not: return new NotBlockLogic();
+                case BlockType.Split: return new SplitterBlockLogic();
+                default: throw new ArgumentException();
+            }
+        }
 
         private bool CanSetConnector(ConnectorViewModel? from, object toParameter)
         {
@@ -204,6 +225,7 @@ namespace SchemeApplication.ViewModels
                 CanvasObjects.Add(connection);
             }
         }
+
         private void HandleDeletingFigure(FigureBaseViewModel figureBaseViewModel)
         {
             CanvasObjects.Remove(figureBaseViewModel);

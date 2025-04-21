@@ -1,9 +1,6 @@
 ﻿using SchemeApplication.ViewModels.CanvasFigures.Base;
 using SchemeApplication.Infrastructure.BlockLogics.Base;
 using System.Windows;
-using System.Windows.Input;
-using SchemeApplication.Infrastructure.Commands;
-using System.Diagnostics;
 
 namespace SchemeApplication.ViewModels.CanvasFigures
 {
@@ -69,7 +66,7 @@ namespace SchemeApplication.ViewModels.CanvasFigures
 
         #region Constructors and destructor
 
-        public BlockFigureViewModel(int inputCount, int outputCount, BlockLogic blockLogic = null)
+        public BlockFigureViewModel(int inputCount, int outputCount, BlockLogic blockLogic)
         {
             _inputs = new List<ConnectorViewModel>();
             for (int i = 0; i < inputCount; i++)
@@ -94,7 +91,7 @@ namespace SchemeApplication.ViewModels.CanvasFigures
         }
 
         #endregion
-        
+
         #region Public overrided methods
 
         public override void Destroy()
@@ -109,17 +106,16 @@ namespace SchemeApplication.ViewModels.CanvasFigures
 
         #region Public methods
 
-        public void ConnectToBlock(BlockFigureViewModel block, int number)
+        public bool Execute()
         {
-            throw new NotImplementedException();
+            return _blockLogic.Execute();
         }
-        public BlockFigureViewModel DisconnectBlock(int number)
+        public BlockFigureViewModel? TryGetConnectedBlockOrNull(int outputNumber)
         {
-            throw new NotImplementedException();
-        }
-        public bool Execute(int number)
-        {
-            return true;
+            if (_inputs[outputNumber].Connection == null || _inputs[outputNumber].Connection.OutputConnector == null) 
+                return null;
+            else
+                return _inputs[outputNumber].Connection.OutputConnector.SourceBlock; 
         }
 
         #endregion

@@ -14,9 +14,6 @@ namespace SchemeApplication
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Point _lastMousePosition;
-        private bool _canvasIsMoved = false;
-
         public MainWindow()
         {
             InitializeComponent();
