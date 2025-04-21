@@ -6,8 +6,6 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Shapes;
 
 namespace SchemeApplication
 {
@@ -30,52 +28,6 @@ namespace SchemeApplication
             if (DataContext is MainWindowViewModel viewModel && viewModel.CreateBlockCommand.CanExecute(null))
             {
                 viewModel.CreateBlockCommand.Execute(e.GetPosition(sender as Canvas));
-            }
-            return;
-            //need fix
-            if(Mouse.Captured != null && Mouse.Captured != ItemsCanvas.Canvas)
-            {
-                return;
-            }
-            if (ItemsCanvas.Canvas.CaptureMouse())
-            {
-                Trace.WriteLine("CaptureMouse");
-                _lastMousePosition = e.GetPosition(this);
-                _canvasIsMoved = true;
-            }
-        }
-        private void Canvas_MouseMove(object sender, MouseEventArgs e)
-        {
-            return;
-            //need fix
-            if (_canvasIsMoved)
-            {
-                Canvas canvas = ItemsCanvas.Canvas;
-
-                Point currentPosition = e.GetPosition(this);
-                Vector delta = currentPosition - _lastMousePosition;
-                _lastMousePosition = currentPosition;
-
-                foreach (var element in canvas.Children)
-                {
-                    DraggableContentControl? contentControl = element as DraggableContentControl;
-                    if (contentControl != null && contentControl.IsDraggable)
-                    {
-                        contentControl.Position += delta;
-                    }
-                }
-            }
-        }
-        private void Canvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            return;
-            //need fix
-            Trace.WriteLine("Canvas_MouseLeftButtonUp");
-            if (_canvasIsMoved)
-            {
-                Trace.WriteLine("_canvasIsMoved");
-                _canvasIsMoved = false;
-                ItemsCanvas.Canvas.ReleaseMouseCapture();
             }
         }
 
