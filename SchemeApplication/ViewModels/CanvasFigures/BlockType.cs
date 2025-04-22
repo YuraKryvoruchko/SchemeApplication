@@ -5,6 +5,8 @@
         And,
         Or,
         Not,
-        Split
+        Split,
+        Input,
+        Output
     }
 }

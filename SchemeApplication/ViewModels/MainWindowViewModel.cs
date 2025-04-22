@@ -28,7 +28,7 @@ namespace SchemeApplication.ViewModels
 
         public CompositeCollection CanvasObjects { get; }
 
-        public List<BlockFigureViewModel> InputBlocks { get; }
+        public List<InputBlockFigureViewModel> InputBlocks { get; }
         public List<BlockFigureViewModel> OutputBlocks { get; }
 
         #region Selected List Block
@@ -92,14 +92,32 @@ namespace SchemeApplication.ViewModels
         {
             Point point = (Point)parameter;
             Block blockConfig = TestData.BlockConfigs[_selectedListBlock.IndexOfBlockConfig];
-            BlockFigureViewModel blockFigureViewModel = new BlockFigureViewModel(blockConfig.InputsCount, 
-                blockConfig.OutputsCount, GenerateBlockLogic(blockConfig.Type))
+            BlockFigureViewModel blockFigureViewModel = null;
+            if (blockConfig.Type == BlockType.Input)
             {
-                Position = point,
-                Name = blockConfig.Name,
-                ImagePath = blockConfig.Image
-            };
+                blockFigureViewModel = new InputBlockFigureViewModel(blockConfig.InputsCount,
+                    blockConfig.OutputsCount, GenerateBlockLogic(blockConfig.Type) as InputBlockLogic);
+                blockFigureViewModel.Name = "Input " + InputBlocks.Count;
+            }
+            else
+            {
+                blockFigureViewModel = new BlockFigureViewModel(blockConfig.InputsCount,
+                    blockConfig.OutputsCount, GenerateBlockLogic(blockConfig.Type));
+                if(blockConfig.Type == BlockType.Output)
+                {
+                    blockFigureViewModel.Name = "Output " + OutputBlocks.Count;
+                }
+                else
+                {
+                    blockFigureViewModel.Name = blockConfig.Name;
+                }
+            }
+            blockFigureViewModel.Position = point;
+            blockFigureViewModel.ImagePath = blockConfig.Image;
             blockFigureViewModel.OnDestroy += HandleDeletingFigure;
+
+            if (blockConfig.Type == BlockType.Input) InputBlocks.Add(blockFigureViewModel as InputBlockFigureViewModel);
+            else if (blockConfig.Type == BlockType.Output) OutputBlocks.Add(blockFigureViewModel);
 
             CanvasObjects.Add(blockFigureViewModel);
             SelectedListBlock = null;
@@ -174,7 +192,7 @@ namespace SchemeApplication.ViewModels
         {
             ListBlocks = new ObservableCollection<ListBlock>(TestData.ListBlocks);
             CanvasObjects = new CompositeCollection();
-            InputBlocks = new List<BlockFigureViewModel>();
+            InputBlocks = new List<InputBlockFigureViewModel>();
             OutputBlocks = new List<BlockFigureViewModel>();
 
             CreateBlockCommand = new LambdaCommand(OnCreateBlockCommandExecuted, CanCreateBlockCommandExecuted);
@@ -195,6 +213,8 @@ namespace SchemeApplication.ViewModels
                 case BlockType.Or: return new OrBlockLogic();
                 case BlockType.Not: return new NotBlockLogic();
                 case BlockType.Split: return new SplitterBlockLogic();
+                case BlockType.Output: return new SplitterBlockLogic();
+                case BlockType.Input: return new InputBlockLogic();
                 default: throw new ArgumentException();
             }
         }

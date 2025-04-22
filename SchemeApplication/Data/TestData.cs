@@ -27,8 +27,8 @@ namespace SchemeApplication.Data
             new Block() { Name = "AND", InputsCount = 2, OutputsCount = 1, Type = BlockType.And },
             new Block() { Name = "OR", InputsCount = 2, OutputsCount = 1, Type = BlockType.Or },
             new Block() { Name = "NOT", InputsCount = 1, OutputsCount = 1, Type = BlockType.Not },
-            new Block() { InputsCount = 0, OutputsCount = 1, },
-            new Block() { InputsCount = 1, OutputsCount = 0, }
+            new Block() { InputsCount = 0, OutputsCount = 1, Type = BlockType.Input },
+            new Block() { InputsCount = 1, OutputsCount = 0, Type = BlockType.Output }
         };
 
         public static IReadOnlyList<Block> BlockConfigs { get => _blockList; }
