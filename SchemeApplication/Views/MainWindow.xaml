@@ -143,6 +143,10 @@
                         <TextBox Text="{Binding Outputs, Mode=TwoWay, FallbackValue=0}"/>
                     </StackPanel>
                 </Grid>
+                <Button VerticalAlignment="Bottom"
+                        Margin="10"
+                        Content="Simulate"
+                        Command="{Binding Path=OpenSimulatingWindowCommand}"/>
             </Grid>
         </Border>
     </Grid>

@@ -83,6 +83,7 @@ namespace SchemeApplication.ViewModels.CanvasFigures
             Outputs = _outputs;
 
             _blockLogic = blockLogic;
+            _blockLogic.Block = this;
             this.OnChangePosition += HandleBlockMove;
         }
         ~BlockFigureViewModel()

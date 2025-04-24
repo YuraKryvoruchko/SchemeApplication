@@ -10,6 +10,7 @@ using SchemeApplication.ViewModels.CanvasFigures;
 using SchemeApplication.ViewModels.CanvasFigures.Base;
 using SchemeApplication.Infrastructure.BlockLogics.Base;
 using SchemeApplication.Infrastructure.BlockLogics;
+using SchemeApplication.Services;
 
 namespace SchemeApplication.ViewModels
 {
@@ -184,6 +185,22 @@ namespace SchemeApplication.ViewModels
 
         #endregion
 
+        #region Open Simulating Window
+
+        public ICommand OpenSimulatingWindowCommand { get; }
+
+        private void OnOpenSimulatingWindowCommandExecuted(object parameter)
+        {
+            SchemeSimulatingService.StartSimulateStatic(InputBlocks, OutputBlocks);
+        }
+        
+        private bool CanOpenSimulatingWindowCommandExecute(object parameter)
+        {
+            return true;
+        }
+
+        #endregion
+
         #endregion
 
         #region Contructors
@@ -199,6 +216,7 @@ namespace SchemeApplication.ViewModels
             DeleteFigureCommand = new LambdaCommand(OnDeleteFigureCommandExecuted, CanDeleteBlockCommandExecuted);
             SetInputConnectorCommand = new LambdaCommand(OnSetInputConnectorCommandExecute, CanSetInputConnectorCommandExecuted);
             SetOutputConnectorCommand = new LambdaCommand(OnSetOutputConnectorCommandExecute, CanSetOutputConnectorCommandExecuted);
+            OpenSimulatingWindowCommand = new LambdaCommand(OnOpenSimulatingWindowCommandExecuted, CanOpenSimulatingWindowCommandExecute);
         }
 
         #endregion
