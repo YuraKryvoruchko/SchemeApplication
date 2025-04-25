@@ -10,6 +10,7 @@ using SchemeApplication.ViewModels.CanvasFigures;
 using SchemeApplication.ViewModels.CanvasFigures.Base;
 using SchemeApplication.Infrastructure.BlockLogics.Base;
 using SchemeApplication.Infrastructure.BlockLogics;
+using SchemeApplication.Services.Interfaces;
 using SchemeApplication.Services;
 
 namespace SchemeApplication.ViewModels
@@ -17,6 +18,8 @@ namespace SchemeApplication.ViewModels
     class MainWindowViewModel : ViewModel
     {
         #region Fields
+
+        private ISchemeSimulatingService _schemeSimulatingService;
 
         private ConnectorViewModel? _inputConnector;
         private ConnectorViewModel? _outputConnector;
@@ -77,6 +80,18 @@ namespace SchemeApplication.ViewModels
         {
             get { return _outputs; }
             set { Set(ref _outputs, value); }
+        }
+
+        #endregion
+
+        #region Is Active Modification
+
+        private bool _isActiveModification = true;
+
+        public bool IsActiveModification 
+        { 
+            get => _isActiveModification;
+            set => Set(ref _isActiveModification, value); 
         }
 
         #endregion
@@ -146,7 +161,7 @@ namespace SchemeApplication.ViewModels
 
         #endregion
 
-        #region Set Input Connector
+        #region Set Input Connector Command
 
         public ICommand SetInputConnectorCommand { get; }
 
@@ -165,7 +180,7 @@ namespace SchemeApplication.ViewModels
 
         #endregion
 
-        #region Set Output Connector
+        #region Set Output Connector Command
 
         public ICommand SetOutputConnectorCommand { get; }
 
@@ -185,18 +200,20 @@ namespace SchemeApplication.ViewModels
 
         #endregion
 
-        #region Open Simulating Window
+        #region Start Simulate Command
 
-        public ICommand OpenSimulatingWindowCommand { get; }
+        public ICommand StartSimulateCommand { get; }
 
-        private void OnOpenSimulatingWindowCommandExecuted(object parameter)
+        private void OnStartSimulateCommandCommandExecuted(object parameter)
         {
-            SchemeSimulatingService.StartSimulateStatic(InputBlocks, OutputBlocks);
+            _schemeSimulatingService.StartSimulate(InputBlocks, OutputBlocks);
+            _schemeSimulatingService.OnFinishSimulating += HandleFinishSimulating;
+            IsActiveModification = false;
         }
         
-        private bool CanOpenSimulatingWindowCommandExecute(object parameter)
+        private bool CanStartSimulateCommandCommandExecute(object parameter)
         {
-            return true;
+            return !_schemeSimulatingService.IsSimulating;
         }
 
         #endregion
@@ -205,8 +222,10 @@ namespace SchemeApplication.ViewModels
 
         #region Contructors
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(ISchemeSimulatingService schemeSimulatingService)
         {
+            _schemeSimulatingService = schemeSimulatingService;
+
             ListBlocks = new ObservableCollection<ListBlock>(TestData.ListBlocks);
             CanvasObjects = new CompositeCollection();
             InputBlocks = new List<InputBlockFigureViewModel>();
@@ -216,7 +235,7 @@ namespace SchemeApplication.ViewModels
             DeleteFigureCommand = new LambdaCommand(OnDeleteFigureCommandExecuted, CanDeleteBlockCommandExecuted);
             SetInputConnectorCommand = new LambdaCommand(OnSetInputConnectorCommandExecute, CanSetInputConnectorCommandExecuted);
             SetOutputConnectorCommand = new LambdaCommand(OnSetOutputConnectorCommandExecute, CanSetOutputConnectorCommandExecuted);
-            OpenSimulatingWindowCommand = new LambdaCommand(OnOpenSimulatingWindowCommandExecuted, CanOpenSimulatingWindowCommandExecute);
+            StartSimulateCommand = new LambdaCommand(OnStartSimulateCommandCommandExecuted, CanStartSimulateCommandCommandExecute);
         }
 
         #endregion
@@ -267,6 +286,11 @@ namespace SchemeApplication.ViewModels
         private void HandleDeletingFigure(FigureBaseViewModel figureBaseViewModel)
         {
             CanvasObjects.Remove(figureBaseViewModel);
+        }
+        private void HandleFinishSimulating()
+        {
+            _schemeSimulatingService.OnFinishSimulating -= HandleFinishSimulating;
+            IsActiveModification = true;
         }
 
         #endregion

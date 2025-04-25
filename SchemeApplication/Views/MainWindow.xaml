@@ -8,17 +8,14 @@
         xmlns:vmf="clr-namespace:SchemeApplication.ViewModels.CanvasFigures"
         xmlns:controls="clr-namespace:SchemeApplication.Views.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-
-    <Window.DataContext>
-        <vm:MainWindowViewModel/>
-    </Window.DataContext>
+        Title="MainWindow" Height="450" Width="800"
+        d:DataContext="{d:DesignInstance vm:MainWindowViewModel}">
 
     <Window.InputBindings>
         <KeyBinding Key="Delete" Command="{Binding DeleteFigureCommand}"/>
     </Window.InputBindings>
-    
-    <Grid Background="#d8dee9">
+
+    <Grid Background="#d8dee9" IsHitTestVisible="{Binding IsActiveModification}">
         <Border BorderBrush="#545557" BorderThickness="2">
             <controls:ItemsCanvas x:Name="ItemsCanvas" Margin="150,0,150,0" ItemsSource="{Binding CanvasObjects}">
                 <controls:ItemsCanvas.Resources>
@@ -90,7 +87,8 @@
                 </controls:ItemsCanvas.ItemContainerStyle>
                 <controls:ItemsCanvas.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Canvas x:Name="Canvas" Background="#ffffff" ClipToBounds="True" Width="5000" Height="5000"
+                        <Canvas x:Name="Canvas" Background="#ffffff" 
+                                ClipToBounds="True" Width="5000" Height="5000"
                                 MouseLeftButtonDown="Canvas_MouseLeftButtonDown"/>
                     </ItemsPanelTemplate>
                 </controls:ItemsCanvas.ItemsPanel>
@@ -146,7 +144,7 @@
                 <Button VerticalAlignment="Bottom"
                         Margin="10"
                         Content="Simulate"
-                        Command="{Binding Path=OpenSimulatingWindowCommand}"/>
+                        Command="{Binding Path=StartSimulateCommand}"/>
             </Grid>
         </Border>
     </Grid>
