@@ -27,7 +27,7 @@ namespace SchemeApplication.ViewModels
 
         #region Properties
 
-        public ObservableCollection<ListBlock> ListBlocks { get; }
+        public ObservableCollection<BlockCategory> BlockCategories { get; }
 
         public CompositeCollection CanvasObjects { get; }
 
@@ -237,7 +237,7 @@ namespace SchemeApplication.ViewModels
         {
             _schemeSimulatingService = schemeSimulatingService;
 
-            ListBlocks = new ObservableCollection<ListBlock>(TestData.ListBlocks);
+            BlockCategories = new ObservableCollection<BlockCategory>(TestData.BlockCategories);
             CanvasObjects = new CompositeCollection();
             InputBlocks = new List<InputBlockFigureViewModel>();
             OutputBlocks = new List<BlockFigureViewModel>();

@@ -5,20 +5,41 @@ namespace SchemeApplication.Data
 {
     internal class TestData
     {
-        #region ListBlocks
+        #region ListBlockCategories
 
-        private static List<ListBlock> _listBlocks = new List<ListBlock>()
+        private static List<BlockCategory> _blockCategories = new List<BlockCategory>()
         {
-            new ListBlock() { Name = "AND", IndexOfBlockConfig = 0 },
-            new ListBlock() { Name = "OR", IndexOfBlockConfig = 1 },
-            new ListBlock() { Name = "NOT", IndexOfBlockConfig = 2 },
-            new ListBlock() { Name = "INPUT", IndexOfBlockConfig = 3 },
-            new ListBlock() { Name = "OUTPUT", IndexOfBlockConfig = 4 },
-            new ListBlock() { Name = "DOUBLE SPLIT", IndexOfBlockConfig = 5 },
-            new ListBlock() { Name = "TRIPLE SPLIT", IndexOfBlockConfig = 6 },
+            new BlockCategory()
+            {
+                Name = "SYSTEM BLOCKS",
+                ListBlocks = new ListBlock[]
+                {
+                    new ListBlock() { Name = "INPUT", IndexOfBlockConfig = 3 },
+                    new ListBlock() { Name = "OUTPUT", IndexOfBlockConfig = 4 },
+                }
+            },
+            new BlockCategory()
+            {
+                Name = "LOGICAL BLOCKS",
+                ListBlocks = new ListBlock[]
+                {
+                    new ListBlock() { Name = "AND", IndexOfBlockConfig = 0 },
+                    new ListBlock() { Name = "OR", IndexOfBlockConfig = 1 },
+                    new ListBlock() { Name = "NOT", IndexOfBlockConfig = 2 },
+                }
+            },
+            new BlockCategory()
+            {
+                Name = "SPLIT BLOCKS",
+                ListBlocks = new ListBlock[]
+                {
+                    new ListBlock() { Name = "DOUBLE SPLIT", IndexOfBlockConfig = 5 },
+                    new ListBlock() { Name = "TRIPLE SPLIT", IndexOfBlockConfig = 6 },
+                }
+            }
         };
 
-        public static IReadOnlyList<ListBlock> ListBlocks { get => _listBlocks; }
+        public static IReadOnlyList<BlockCategory> BlockCategories { get => _blockCategories; }
 
         #endregion
 

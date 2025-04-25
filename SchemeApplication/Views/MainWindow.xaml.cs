@@ -1,4 +1,5 @@
-﻿using SchemeApplication.ViewModels;
+﻿using SchemeApplication.Models;
+using SchemeApplication.ViewModels;
 using SchemeApplication.ViewModels.CanvasFigures;
 using SchemeApplication.ViewModels.CanvasFigures.Base;
 using SchemeApplication.Views.Controls;
@@ -42,6 +43,15 @@ namespace SchemeApplication
             {
                 Trace.WriteLine($"From {typeof(MainWindow)}: Selected figure: {element}");
                 viewModel.SelectedFigure = (FigureBaseViewModel)element.DataContext;
+            }
+        }
+
+        private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if(DataContext is MainWindowViewModel viewModel 
+                && e.NewValue is ListBlock listBlock)
+            {
+                viewModel.SelectedListBlock = listBlock;
             }
         }
     }
