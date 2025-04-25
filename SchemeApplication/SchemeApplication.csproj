@@ -16,7 +16,27 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Images\Blocks\" />
+    <None Remove="Resources\Images\Blocks\block_and.png" />
+    <None Remove="Resources\Images\Blocks\block_input.png" />
+    <None Remove="Resources\Images\Blocks\block_not.png" />
+    <None Remove="Resources\Images\Blocks\block_or.png" />
+    <None Remove="Resources\Images\Blocks\block_output.png" />
+    <None Remove="Resources\Images\Blocks\block_split_2.png" />
+    <None Remove="Resources\Images\Blocks\block_split_3.png" />
+    <None Remove="Resources\Images\null_image.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\Blocks\block_and.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Blocks\block_input.png" />
+    <Resource Include="Resources\Images\Blocks\block_not.png" />
+    <Resource Include="Resources\Images\Blocks\block_or.png" />
+    <Resource Include="Resources\Images\Blocks\block_output.png" />
+    <Resource Include="Resources\Images\Blocks\block_split_2.png" />
+    <Resource Include="Resources\Images\Blocks\block_split_3.png" />
+    <Resource Include="Resources\Images\null_image.png" />
   </ItemGroup>
 
 </Project>
