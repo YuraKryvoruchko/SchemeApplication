@@ -21,41 +21,34 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition Width="auto" MinWidth="150"/>
         </Grid.ColumnDefinitions>
-        <GroupBox Grid.Column="0" Header="Inputs">
-            <ItemsControl ItemsSource="{Binding InputBlocks}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="cf:InputBlockFigureViewModel">
-                        <WrapPanel>
-                            <TextBlock Text="{Binding Name}"/>
-                            <TextBox Text="{Binding InputValue, Converter={StaticResource BlockValueConverter}}"/>
-                        </WrapPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+        <GroupBox Grid.Column="0" Header="Inputs" FontSize="16">
+            <DataGrid ItemsSource="{Binding InputBlocks}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" FontSize="16"
+                                        Binding="{Binding Name}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Input value" FontSize="16"
+                                        Width="*"
+                                        Binding="{Binding InputValue, Converter={StaticResource BlockValueConverter}}"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </GroupBox>
-        <GroupBox Grid.Column="1" Header="Outputs">
-            <ItemsControl ItemsSource="{Binding SimulateResults}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="vm:SimulateResult">
-                        <WrapPanel Background="WhiteSmoke" Margin="10,5,10,5">
-                                <Border BorderBrush="#545557" BorderThickness="1">
-                                    <TextBlock FontSize="20" Text="{Binding Name}"/>
-                                </Border>
-                                <Border BorderBrush="#545557" BorderThickness="1" Margin="3,0,0,0">
-                                    <TextBlock FontSize="20" Text="{Binding Value, Converter={StaticResource BlockValueConverter}}"/>
-                                </Border>
-                        </WrapPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+        <GroupBox Grid.Column="1" Header="Outputs" FontSize="16">
+            <DataGrid ItemsSource="{Binding SimulateResults}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" FontSize="16"
+                                        Binding="{Binding Name}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Output value" FontSize="16"
+                                        Width="*"
+                                        Binding="{Binding Value, Converter={StaticResource BlockValueConverter}}" 
+                                        IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </GroupBox>
-        <WrapPanel Grid.Column="0" Grid.ColumnSpan="2" 
-                   HorizontalAlignment="Right"
-                   VerticalAlignment="Bottom"
-                   Margin="20">
-            
-            <Button Content="Simulate" Command="{Binding Path=SimulateCommand}"/>
-        </WrapPanel>
+        <StackPanel Grid.Column="2" Margin="20">
+            <Button Content="Simulate" FontSize="16"
+                    Command="{Binding Path=SimulateCommand}"/>
+        </StackPanel>
     </Grid>
 </Window>
