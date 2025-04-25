@@ -6,7 +6,7 @@ namespace SchemeApplication.ViewModels.CanvasFigures
     {
         #region Properties 
 
-        #region InputConnection
+        #region Input Connection
 
         private ConnectorViewModel? _outputConnector;
 
@@ -16,9 +16,9 @@ namespace SchemeApplication.ViewModels.CanvasFigures
             set { Set(ref _outputConnector, value); }
         }
 
-        #endregion
+        #endregion 
 
-        #region OutputConnection
+        #region Output Connection
 
         private ConnectorViewModel? _inputConnector;
 
@@ -41,8 +41,11 @@ namespace SchemeApplication.ViewModels.CanvasFigures
 
         public override void Destroy()
         {
-            if(_outputConnector != null) _outputConnector.ConnectedConnector = null;
-            if (_inputConnector != null) _inputConnector.ConnectedConnector = null;
+            if(_outputConnector != null) _outputConnector.Free();
+            if (_inputConnector != null) _inputConnector.Free();
+
+            OutputConnector = null;
+            InputConnector = null;
 
             RaiseOnDestroyEvent();
         }

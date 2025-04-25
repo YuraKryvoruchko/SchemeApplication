@@ -15,5 +15,15 @@ namespace SchemeApplication.Infrastructure.BlockLogics
 
             return !firstBlock.Execute();
         }
+        public override bool CanExecute()
+        {
+            BlockFigureViewModel? firstBlock = Block?.TryGetConnectedBlockOrNull(0);
+            if (firstBlock == null)
+            {
+                return false;
+            }
+
+            return firstBlock.CanExecute();
+        }
     }
 }

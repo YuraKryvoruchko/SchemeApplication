@@ -11,7 +11,6 @@ namespace SchemeApplication.ViewModels.CanvasFigures
         public int Number { get; set; }
 
         public ConnectionFigureViewModel? Connection { get; set; }
-        public ConnectorViewModel? ConnectedConnector { get; set; }
 
         #region Position
 
@@ -24,6 +23,20 @@ namespace SchemeApplication.ViewModels.CanvasFigures
         }
 
         #endregion
+
+        #endregion
+
+        #region Public methods
+
+        public void Free()
+        {
+            Connection = null;
+        }
+        public void FreeWithDestroyConnection()
+        {
+            Connection?.Destroy();
+            Connection = null;
+        }
 
         #endregion
     }

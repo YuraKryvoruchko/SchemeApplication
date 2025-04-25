@@ -7,5 +7,6 @@ namespace SchemeApplication.Infrastructure.BlockLogics.Base
         public BlockFigureViewModel? Block { get; set; }
 
         public abstract bool Execute();
+        public abstract bool CanExecute();
     }
 }

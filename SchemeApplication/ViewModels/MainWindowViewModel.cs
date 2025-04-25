@@ -11,7 +11,6 @@ using SchemeApplication.ViewModels.CanvasFigures.Base;
 using SchemeApplication.Infrastructure.BlockLogics.Base;
 using SchemeApplication.Infrastructure.BlockLogics;
 using SchemeApplication.Services.Interfaces;
-using SchemeApplication.Services;
 
 namespace SchemeApplication.ViewModels
 {
@@ -213,7 +212,14 @@ namespace SchemeApplication.ViewModels
         
         private bool CanStartSimulateCommandCommandExecute(object parameter)
         {
-            return !_schemeSimulatingService.IsSimulating;
+            bool canSimulate = true;
+            foreach(var output in OutputBlocks)
+            {
+                canSimulate = output.CanExecute();
+                if (canSimulate == false) break;
+            }
+
+            return !_schemeSimulatingService.IsSimulating && canSimulate;
         }
 
         #endregion
@@ -286,6 +292,14 @@ namespace SchemeApplication.ViewModels
         private void HandleDeletingFigure(FigureBaseViewModel figureBaseViewModel)
         {
             CanvasObjects.Remove(figureBaseViewModel);
+            if (figureBaseViewModel is InputBlockFigureViewModel input)
+            {
+                InputBlocks.Remove(input);
+            }
+            else if (OutputBlocks.Contains(figureBaseViewModel))
+            {
+                OutputBlocks.Remove(figureBaseViewModel as BlockFigureViewModel);
+            }
         }
         private void HandleFinishSimulating()
         {

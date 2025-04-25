@@ -97,8 +97,8 @@ namespace SchemeApplication.ViewModels.CanvasFigures
 
         public override void Destroy()
         {
-            foreach (var input in _inputs) input.Connection?.Destroy();
-            foreach (var output in _outputs) output.Connection?.Destroy();
+            foreach (var input in _inputs) input.FreeWithDestroyConnection();
+            foreach (var output in _outputs) output.FreeWithDestroyConnection();
 
             RaiseOnDestroyEvent();
         }
@@ -110,6 +110,10 @@ namespace SchemeApplication.ViewModels.CanvasFigures
         public bool Execute()
         {
             return _blockLogic.Execute();
+        }
+        public bool CanExecute()
+        {
+            return _blockLogic.CanExecute();
         }
         public BlockFigureViewModel? TryGetConnectedBlockOrNull(int outputNumber)
         {

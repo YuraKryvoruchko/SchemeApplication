@@ -10,5 +10,9 @@ namespace SchemeApplication.Infrastructure.BlockLogics
         {
             return Value;
         }
+        public override bool CanExecute()
+        {
+            return true;
+        }
     }
 }
