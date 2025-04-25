@@ -14,6 +14,8 @@ namespace SchemeApplication.Data
             new ListBlock() { Name = "NOT", IndexOfBlockConfig = 2 },
             new ListBlock() { Name = "INPUT", IndexOfBlockConfig = 3 },
             new ListBlock() { Name = "OUTPUT", IndexOfBlockConfig = 4 },
+            new ListBlock() { Name = "DOUBLE SPLIT", IndexOfBlockConfig = 5 },
+            new ListBlock() { Name = "TRIPLE SPLIT", IndexOfBlockConfig = 6 },
         };
 
         public static IReadOnlyList<ListBlock> ListBlocks { get => _listBlocks; }
@@ -28,7 +30,9 @@ namespace SchemeApplication.Data
             new Block() { Name = "OR", InputsCount = 2, OutputsCount = 1, Type = BlockType.Or },
             new Block() { Name = "NOT", InputsCount = 1, OutputsCount = 1, Type = BlockType.Not },
             new Block() { InputsCount = 0, OutputsCount = 1, Type = BlockType.Input },
-            new Block() { InputsCount = 1, OutputsCount = 0, Type = BlockType.Output }
+            new Block() { InputsCount = 1, OutputsCount = 0, Type = BlockType.Output },
+            new Block() { Name = "DOUBLE SPLIT", InputsCount = 1, OutputsCount = 2, Type = BlockType.Split },
+            new Block() { Name = "TRIPLE SPLIT", InputsCount = 1, OutputsCount = 3, Type = BlockType.Split },
         };
 
         public static IReadOnlyList<Block> BlockConfigs { get => _blockList; }

@@ -53,7 +53,12 @@ namespace SchemeApplication.ViewModels
         public FigureBaseViewModel? SelectedFigure
         {
             get { return _selectedFigure; }
-            set { Set(ref _selectedFigure, value); }
+            set 
+            {
+                if(_selectedFigure != null) _selectedFigure.IsSelected = false;
+                Set(ref _selectedFigure, value);
+                if (_selectedFigure != null) _selectedFigure.IsSelected = true;
+            }
         }
 
 

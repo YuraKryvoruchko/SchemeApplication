@@ -9,7 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Images\BlockImages\" />
+    <Compile Remove="Resources\Images\BlockImages\**" />
+    <EmbeddedResource Remove="Resources\Images\BlockImages\**" />
+    <None Remove="Resources\Images\BlockImages\**" />
+    <Page Remove="Resources\Images\BlockImages\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\Images\Blocks\" />
   </ItemGroup>
 
 </Project>

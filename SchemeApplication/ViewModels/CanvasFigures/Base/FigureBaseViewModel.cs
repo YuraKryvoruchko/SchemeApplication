@@ -5,7 +5,9 @@ namespace SchemeApplication.ViewModels.CanvasFigures.Base
 {
     internal class FigureBaseViewModel : ViewModel
     {
-        #region IsDraggable
+        #region Properties
+
+        #region Is Draggable
 
         private bool _isDraggable = true;
 
@@ -34,6 +36,20 @@ namespace SchemeApplication.ViewModels.CanvasFigures.Base
                 }
             }
         }
+
+        #endregion
+
+        #region Is Selected
+
+        private bool _isSelected = false;
+
+        public bool IsSelected
+        {
+            get { return _isSelected; }
+            set { Set(ref _isSelected, value); }
+        }
+
+        #endregion
 
         #endregion
 
