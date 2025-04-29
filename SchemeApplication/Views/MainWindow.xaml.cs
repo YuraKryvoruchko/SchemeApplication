@@ -48,10 +48,18 @@ namespace SchemeApplication
 
         private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if(DataContext is MainWindowViewModel viewModel 
-                && e.NewValue is ListBlock listBlock)
+            if(DataContext is MainWindowViewModel viewModel)
             {
-                viewModel.SelectedListBlock = listBlock;
+                if(e.NewValue is ListBlock listBlock)
+                {
+                    viewModel.SelectedListBlock = listBlock;
+                    var a = ListTreeView.SelectedItem;
+                    var b = ListTreeView.SelectedValue;
+                }
+                else
+                {
+                    viewModel.SelectedListBlock = null;
+                }
             }
         }
     }
