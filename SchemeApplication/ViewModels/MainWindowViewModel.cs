@@ -100,6 +100,18 @@ namespace SchemeApplication.ViewModels
 
         #endregion
 
+        #region Zoom
+
+        private float _zoom = 1;
+
+        public float Zoom 
+        { 
+            get => _zoom; 
+            set => Set(ref _zoom, value);
+        }
+
+        #endregion
+
         #endregion
 
         #region Commands
@@ -204,6 +216,38 @@ namespace SchemeApplication.ViewModels
 
         #endregion
 
+        #region Zoom In
+
+        public ICommand ZoomInCommand { get; }
+
+        private void OnZoomInCommandExecuted(object parameter)
+        {
+            Zoom += 0.1f;
+        }
+
+        private bool CanZoomInCommandExecute(object parameter)
+        {
+            return Zoom < 2f;
+        }
+
+        #endregion
+
+        #region Zoom Out
+
+        public ICommand ZoomOutCommand { get; }
+
+        private void OnZoomOutCommandExecuted(object parameter)
+        {
+            Zoom -= 0.1f;
+        }
+
+        private bool CanZoomOutCommandExecute(object parameter)
+        {
+            return Zoom > 0.4f;
+        }
+
+        #endregion
+
         #region Start Simulate Command
 
         public ICommand StartSimulateCommand { get; }
@@ -247,6 +291,8 @@ namespace SchemeApplication.ViewModels
             SetInputConnectorCommand = new LambdaCommand(OnSetInputConnectorCommandExecute, CanSetInputConnectorCommandExecuted);
             SetOutputConnectorCommand = new LambdaCommand(OnSetOutputConnectorCommandExecute, CanSetOutputConnectorCommandExecuted);
             StartSimulateCommand = new LambdaCommand(OnStartSimulateCommandCommandExecuted, CanStartSimulateCommandCommandExecute);
+            ZoomInCommand = new LambdaCommand(OnZoomInCommandExecuted, CanZoomInCommandExecute);
+            ZoomOutCommand = new LambdaCommand(OnZoomOutCommandExecuted, CanZoomOutCommandExecute);
         }
 
         #endregion
