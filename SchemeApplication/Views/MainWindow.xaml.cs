@@ -22,10 +22,16 @@ namespace SchemeApplication
 
         private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Trace.WriteLine("Canvas_MouseLeftButtonDown");
-            if (DataContext is MainWindowViewModel viewModel && viewModel.CreateBlockCommand.CanExecute(null))
+            if (DataContext is MainWindowViewModel viewModel)
             {
-                viewModel.CreateBlockCommand.Execute(e.GetPosition(sender as Canvas));
+                if (viewModel.CreateBlockCommand.CanExecute(null))
+                {
+                    viewModel.CreateBlockCommand.Execute(e.GetPosition(sender as Canvas));
+                }
+                else
+                {
+                    viewModel.SelectedFigure = null;
+                }
             }
         }
 
@@ -33,7 +39,7 @@ namespace SchemeApplication
         {
             FrameworkElement ellipse = (FrameworkElement)sender;
             ConnectorViewModel connection = ellipse.DataContext as ConnectorViewModel;
-            Point point = ellipse.TranslatePoint(new Point(0, 0), ItemsCanvas.Canvas);
+            Point point = ellipse.TranslatePoint(new Point(ellipse.Width / 2, ellipse.Height / 2), ItemsCanvas.Canvas);
             connection.Position = point;
         }
 
@@ -41,8 +47,8 @@ namespace SchemeApplication
         {
             if (DataContext is MainWindowViewModel viewModel && sender is FrameworkElement element)
             {
-                Trace.WriteLine($"From {typeof(MainWindow)}: Selected figure: {element}");
                 viewModel.SelectedFigure = (FigureBaseViewModel)element.DataContext;
+                e.Handled = true;
             }
         }
 
@@ -53,8 +59,6 @@ namespace SchemeApplication
                 if(e.NewValue is ListBlock listBlock)
                 {
                     viewModel.SelectedListBlock = listBlock;
-                    var a = ListTreeView.SelectedItem;
-                    var b = ListTreeView.SelectedValue;
                 }
                 else
                 {
