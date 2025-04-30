@@ -29,7 +29,7 @@
     <Grid Background="#d8dee9" IsHitTestVisible="{Binding IsActiveModification}">
         
         <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="200" MaxWidth="400" Width="auto"/>
+            <ColumnDefinition MinWidth="200" MaxWidth="200" Width="auto"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition MinWidth="200" MaxWidth="400" Width="auto"/>
         </Grid.ColumnDefinitions>
@@ -148,7 +148,7 @@
         </Border>
         
         <Border Background="#FF4B4C4E" BorderBrush="#FF4B4C4E" BorderThickness="2" Grid.Column="0">
-            <StackPanel>
+            <StackPanel >
                 <TextBlock Margin="5" Text="TOOLBOX" FontSize="16" Foreground="#FFE0E1E1" FontWeight="Bold"/>
                 <TreeView x:Name="ListTreeView" Background="#4b4c4e" HorizontalAlignment="Stretch" BorderBrush="Transparent"
                           ItemsSource="{Binding Path=BlockCategories}"
@@ -162,7 +162,7 @@
                         </HierarchicalDataTemplate>
 
                         <DataTemplate DataType="{x:Type m:ListBlock}">
-                            <WrapPanel>
+                            <WrapPanel Width="200" HorizontalAlignment="Right">
                                 <Image Source="{Binding ImagePath}" Width="22"/>
                                 <TextBlock Text="{Binding Name}" Margin="5" Foreground="#b1b2b3"/>
                             </WrapPanel>
@@ -175,10 +175,10 @@
 
         <Border Background="#FF4B4C4E" BorderBrush="#FF4B4C4E" BorderThickness="2" Grid.Column="2">
             <StackPanel Background="#4b4c4e" HorizontalAlignment="Stretch">
-                <TextBlock Margin="5" Text="AVAILABLE COMMANDS" FontSize="16" Foreground="#FFE0E1E1" FontWeight="Bold"/>
+                <TextBlock Margin="5" Text="COMMANDS" FontSize="16" Foreground="#FFE0E1E1" FontWeight="Bold"/>
                 <Button VerticalAlignment="Bottom"
                         Margin="10"
-                        Content="Simulate"
+                        Content="Open simulator"
                         FontSize="20"
                         Command="{Binding Path=StartSimulateCommand}"/>
             </StackPanel>

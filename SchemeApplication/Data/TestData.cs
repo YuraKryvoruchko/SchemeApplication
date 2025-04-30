@@ -12,30 +12,30 @@ namespace SchemeApplication.Data
         {
             new BlockCategory()
             {
-                Name = "SYSTEM BLOCKS",
+                Name = "System blocks",
                 ListBlocks = new ListBlock[]
                 {
-                    new ListBlock() { Name = "INPUT", IndexOfBlockConfig = 3 },
-                    new ListBlock() { Name = "OUTPUT", IndexOfBlockConfig = 4 },
+                    new ListBlock() { Name = "Input", ImagePath = "/Resources/Images/block_icons/input_icon.png", IndexOfBlockConfig = 3 },
+                    new ListBlock() { Name = "Output", ImagePath = "/Resources/Images/block_icons/output_icon.png", IndexOfBlockConfig = 4 },
                 }
             },
             new BlockCategory()
             {
-                Name = "LOGICAL BLOCKS",
+                Name = "Logical blocks",
                 ListBlocks = new ListBlock[]
                 {
-                    new ListBlock() { Name = "AND", IndexOfBlockConfig = 0 },
-                    new ListBlock() { Name = "OR", IndexOfBlockConfig = 1 },
-                    new ListBlock() { Name = "NOT", IndexOfBlockConfig = 2 },
+                    new ListBlock() { Name = "And", ImagePath = "/Resources/Images/block_icons/and_icon.png", IndexOfBlockConfig = 0 },
+                    new ListBlock() { Name = "Or", ImagePath = "/Resources/Images/block_icons/or_icon.png", IndexOfBlockConfig = 1 },
+                    new ListBlock() { Name = "Not", ImagePath = "/Resources/Images/block_icons/not_icon.png", IndexOfBlockConfig = 2 },
                 }
             },
             new BlockCategory()
             {
-                Name = "SPLIT BLOCKS",
+                Name = "Split blocks",
                 ListBlocks = new ListBlock[]
                 {
-                    new ListBlock() { Name = "DOUBLE SPLIT", IndexOfBlockConfig = 5 },
-                    new ListBlock() { Name = "TRIPLE SPLIT", IndexOfBlockConfig = 6 },
+                    new ListBlock() { Name = "Double splitter", ImagePath = "/Resources/Images/block_icons/split_2_icon.png", IndexOfBlockConfig = 5 },
+                    new ListBlock() { Name = "Triple splitter", ImagePath = "/Resources/Images/block_icons/split_3_icon.png", IndexOfBlockConfig = 6 },
                 }
             }
         };

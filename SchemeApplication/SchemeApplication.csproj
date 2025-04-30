@@ -16,26 +16,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Resources\Images\Blocks\block_and.png" />
-    <None Remove="Resources\Images\Blocks\block_input.png" />
-    <None Remove="Resources\Images\Blocks\block_not.png" />
-    <None Remove="Resources\Images\Blocks\block_or.png" />
-    <None Remove="Resources\Images\Blocks\block_output.png" />
-    <None Remove="Resources\Images\Blocks\block_split_2.png" />
-    <None Remove="Resources\Images\Blocks\block_split_3.png" />
+    <None Remove="Resources\Images\block_icons\and_icon.png" />
+    <None Remove="Resources\Images\block_icons\input_icon.png" />
+    <None Remove="Resources\Images\block_icons\not_icon.png" />
+    <None Remove="Resources\Images\block_icons\or_icon.png" />
+    <None Remove="Resources\Images\block_icons\output_icon.png" />
+    <None Remove="Resources\Images\block_icons\split_2_icon.png" />
+    <None Remove="Resources\Images\block_icons\split_3_icon.png" />
     <None Remove="Resources\Images\null_image.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\Images\Blocks\block_and.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Images\Blocks\block_input.png" />
-    <Resource Include="Resources\Images\Blocks\block_not.png" />
-    <Resource Include="Resources\Images\Blocks\block_or.png" />
-    <Resource Include="Resources\Images\Blocks\block_output.png" />
-    <Resource Include="Resources\Images\Blocks\block_split_2.png" />
-    <Resource Include="Resources\Images\Blocks\block_split_3.png" />
+    <Resource Include="Resources\Images\block_icons\and_icon.png" />
+    <Resource Include="Resources\Images\block_icons\input_icon.png" />
+    <Resource Include="Resources\Images\block_icons\not_icon.png" />
+    <Resource Include="Resources\Images\block_icons\or_icon.png" />
+    <Resource Include="Resources\Images\block_icons\output_icon.png" />
+    <Resource Include="Resources\Images\block_icons\split_2_icon.png" />
+    <Resource Include="Resources\Images\block_icons\split_3_icon.png" />
     <Resource Include="Resources\Images\null_image.png" />
   </ItemGroup>
 
