@@ -1,6 +1,7 @@
 ﻿using SchemeApplication.Infrastructure.Commands;
 using SchemeApplication.ViewModels.Base;
 using SchemeApplication.ViewModels.CanvasFigures;
+using SchemeApplication.Models;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -69,10 +70,5 @@ namespace SchemeApplication.ViewModels
         }
 
         #endregion
-    }
-    internal class SimulateResult
-    {
-        public string Name { get; set; }
-        public bool Value { get; set; }
     }
 }
