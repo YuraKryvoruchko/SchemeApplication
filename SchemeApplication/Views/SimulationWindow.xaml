@@ -24,7 +24,7 @@
             <ColumnDefinition Width="auto" MinWidth="150"/>
         </Grid.ColumnDefinitions>
         <GroupBox Grid.Column="0" Header="Inputs" FontSize="16">
-            <DataGrid ItemsSource="{Binding InputBlocks}" AutoGenerateColumns="False">
+            <DataGrid ItemsSource="{Binding InputBlocks}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" FontSize="16"
                                         Binding="{Binding Name}" IsReadOnly="True"/>
@@ -35,7 +35,7 @@
             </DataGrid>
         </GroupBox>
         <GroupBox Grid.Column="1" Header="Outputs" FontSize="16">
-            <DataGrid ItemsSource="{Binding SimulateResults}" AutoGenerateColumns="False">
+            <DataGrid ItemsSource="{Binding SimulateResults}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" FontSize="16"
                                         Binding="{Binding Name}" IsReadOnly="True"/>

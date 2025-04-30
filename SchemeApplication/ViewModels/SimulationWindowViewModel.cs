@@ -2,7 +2,6 @@
 using SchemeApplication.ViewModels.Base;
 using SchemeApplication.ViewModels.CanvasFigures;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Windows.Input;
 
 namespace SchemeApplication.ViewModels
@@ -42,7 +41,6 @@ namespace SchemeApplication.ViewModels
                     Name = OutputBlocks[i].Name,
                     Value = OutputBlocks[i].Execute()
                 });
-                Trace.WriteLine($"Simulating result of #{i}: {SimulateResults[i].Value}");
             }
         }
 

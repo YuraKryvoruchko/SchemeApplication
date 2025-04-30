@@ -111,14 +111,12 @@
                         </DataTemplate>
                         <DataTemplate DataType="{x:Type vmf:ConnectionFigureViewModel}">
                             <Grid>
-                                <Path Stroke="{Binding IsSelected, Converter={StaticResource BoolToBrushConverter}}" StrokeThickness="6">
-                                    <Path.Data>
-                                        <LineGeometry 
-                                            StartPoint="{Binding OutputConnector.Position}"
-                                            EndPoint="{Binding InputConnector.Position}"/>
-                                    </Path.Data>
-                                </Path>
-                                <Line Stroke="Black" StrokeThickness="3" 
+                                <Line Stroke="{Binding IsSelected, Converter={StaticResource BoolToBrushConverter}}" StrokeThickness="6" 
+                                      X1="{Binding OutputConnector.Position.X}" 
+                                      Y1="{Binding OutputConnector.Position.Y}" 
+                                      X2="{Binding InputConnector.Position.X}" 
+                                      Y2="{Binding InputConnector.Position.Y}"/>
+                                <Line Stroke="#000000" StrokeThickness="3" 
                                       X1="{Binding OutputConnector.Position.X}" 
                                       Y1="{Binding OutputConnector.Position.Y}" 
                                       X2="{Binding InputConnector.Position.X}" 
