@@ -18,6 +18,7 @@ namespace SchemeApplication
         public MainWindow()
         {
             InitializeComponent();
+            this.Closed += (obj, args) => Application.Current.Shutdown();
         }
 
         private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
