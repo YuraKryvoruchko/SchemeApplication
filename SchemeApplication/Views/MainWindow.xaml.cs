@@ -2,6 +2,7 @@
 using SchemeApplication.ViewModels;
 using SchemeApplication.ViewModels.CanvasFigures;
 using SchemeApplication.ViewModels.CanvasFigures.Base;
+using SchemeApplication.ViewModels.ListBlocks;
 using SchemeApplication.Views.Controls;
 using System.Diagnostics;
 using System.Windows;
@@ -55,9 +56,9 @@ namespace SchemeApplication
 
         private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if(DataContext is MainWindowViewModel viewModel)
+            if (DataContext is MainWindowViewModel viewModel)
             {
-                if(e.NewValue is ListBlock listBlock)
+                if(e.NewValue is ListBlockViewModel listBlock)
                 {
                     viewModel.SelectedListBlock = listBlock;
                 }

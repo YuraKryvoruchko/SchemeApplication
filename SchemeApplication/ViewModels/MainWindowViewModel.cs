@@ -11,6 +11,7 @@ using SchemeApplication.ViewModels.CanvasFigures.Base;
 using SchemeApplication.Infrastructure.BlockLogics.Base;
 using SchemeApplication.Infrastructure.BlockLogics;
 using SchemeApplication.Services.Interfaces;
+using SchemeApplication.ViewModels.ListBlocks;
 
 namespace SchemeApplication.ViewModels
 {
@@ -27,18 +28,18 @@ namespace SchemeApplication.ViewModels
 
         #region Properties
 
-        public ObservableCollection<BlockCategory> BlockCategories { get; }
-
         public CompositeCollection CanvasObjects { get; }
 
         public List<InputBlockFigureViewModel> InputBlocks { get; }
         public List<BlockFigureViewModel> OutputBlocks { get; }
 
+        public ObservableCollection<BlockCategoryViewModel> BlockCategories { get; }
+
         #region Selected List Block
 
-        private ListBlock? _selectedListBlock;
+        private ListBlockViewModel? _selectedListBlock;
 
-        public ListBlock? SelectedListBlock
+        public ListBlockViewModel? SelectedListBlock
         {
             get => _selectedListBlock;
             set => Set(ref _selectedListBlock, value);
@@ -152,6 +153,7 @@ namespace SchemeApplication.ViewModels
             else if (blockConfig.Type == BlockType.Output) OutputBlocks.Add(blockFigureViewModel);
 
             CanvasObjects.Add(blockFigureViewModel);
+            SelectedListBlock.IsSelected = false;
             SelectedListBlock = null;
         }
         private bool CanCreateBlockCommandExecuted(object parameter) 
@@ -281,7 +283,12 @@ namespace SchemeApplication.ViewModels
         {
             _schemeSimulatingService = schemeSimulatingService;
 
-            BlockCategories = new ObservableCollection<BlockCategory>(TestData.BlockCategories);
+            BlockCategories = new ObservableCollection<BlockCategoryViewModel>();
+            foreach (var category in TestData.BlockCategories)
+            {
+                BlockCategories.Add(new BlockCategoryViewModel(category));
+            }
+
             CanvasObjects = new CompositeCollection();
             InputBlocks = new List<InputBlockFigureViewModel>();
             OutputBlocks = new List<BlockFigureViewModel>();

@@ -7,14 +7,12 @@
         xmlns:vm="clr-namespace:SchemeApplication.ViewModels"
         xmlns:cf="clr-namespace:SchemeApplication.ViewModels.CanvasFigures"
         xmlns:conv="clr-namespace:SchemeApplication.Infrastructure.Converters"
-        xmlns:rul="clr-namespace:SchemeApplication.Infrastructure.ValidationRules"
         mc:Ignorable="d"
         Title="SimulationWindow" Height="450" Width="800"
         d:DataContext="{d:DesignInstance vm:SimulationWindowViewModel}">
 
     <Window.Resources>
         <conv:BlockValueConverter x:Key="BlockValueConverter"/>
-        <rul:BlockValueValidationRule x:Key="BlockValueValidationRule"/>
     </Window.Resources>
     
     <Grid>
