@@ -28,14 +28,28 @@
     </Window.Resources>
 
     <Grid Background="#d8dee9" IsHitTestVisible="{Binding IsActiveModification}">
-        
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="5" MaxHeight="30" Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="200" MaxWidth="200" Width="auto"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition MinWidth="200" MaxWidth="400" Width="auto"/>
         </Grid.ColumnDefinitions>
+
+        <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Height="20">
+            <MenuItem Header="{DynamicResource LanguageStr}" Height="20">
+                <MenuItem Header="English" 
+                          Command="{Binding SwitchLanguageCommand}"
+                          CommandParameter="en-GB"/>
+                <MenuItem Header="Українська"
+                          Command="{Binding SwitchLanguageCommand}"
+                          CommandParameter="ua-UA"/>
+            </MenuItem>
+        </Menu>
         
-        <Border BorderBrush="#545557" BorderThickness="2" Grid.Column="1">
+        <Border Grid.Row="1" BorderBrush="#545557" BorderThickness="2" Grid.Column="1">
             <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
                 <ScrollViewer.InputBindings>
                     <KeyBinding Key="OemPlus" Modifiers="Ctrl" Command="{Binding ZoomInCommand}"/>  
@@ -148,7 +162,7 @@
             </ScrollViewer>
         </Border>
         
-        <Border Background="#FF4B4C4E" BorderBrush="#FF4B4C4E" BorderThickness="2" Grid.Column="0">
+        <Border Grid.Row="1" Background="#FF4B4C4E" BorderBrush="#FF4B4C4E" BorderThickness="2" Grid.Column="0">
             <StackPanel >
                 <TextBlock Margin="5" Text="{DynamicResource ToolboxStr}" ToolTip="{DynamicResource ToolboxToolTipStr}" 
                            FontSize="16" Foreground="#FFE0E1E1" FontWeight="Bold"/>
@@ -167,7 +181,7 @@
                         <DataTemplate DataType="{x:Type vmt:ListBlockViewModel}">
                             <WrapPanel Width="200" HorizontalAlignment="Right" 
                                        ToolTip="{Binding ToolTipKey, Converter={StaticResource ResKeyToValue}}">
-                                
+ 
                                 <Image Source="{Binding ImagePath}" Width="22"/>
                                 <TextBlock Text="{Binding Name}" Margin="5" Foreground="#b1b2b3"/>
                                 
@@ -187,7 +201,7 @@
             </StackPanel>
         </Border>
 
-        <Border Background="#FF4B4C4E" BorderBrush="#FF4B4C4E" BorderThickness="2" Grid.Column="2">
+        <Border Grid.Row="1" Background="#FF4B4C4E" BorderBrush="#FF4B4C4E" BorderThickness="2" Grid.Column="2">
             <StackPanel Background="#4b4c4e" HorizontalAlignment="Stretch">
                 <TextBlock Margin="5" Text="{DynamicResource CommandsStr}" ToolTip="{DynamicResource СommandsToolTipStr}"
                            FontSize="16" Foreground="#FFE0E1E1" FontWeight="Bold"/>

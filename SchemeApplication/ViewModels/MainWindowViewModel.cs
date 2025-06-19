@@ -254,14 +254,14 @@ namespace SchemeApplication.ViewModels
 
         public ICommand StartSimulateCommand { get; }
 
-        private void OnStartSimulateCommandCommandExecuted(object parameter)
+        private void OnStartSimulateCommandExecuted(object parameter)
         {
             _schemeSimulatingService.StartSimulate(InputBlocks, OutputBlocks);
             _schemeSimulatingService.OnFinishSimulating += HandleFinishSimulating;
             IsActiveModification = false;
         }
         
-        private bool CanStartSimulateCommandCommandExecute(object parameter)
+        private bool CanStartSimulateCommandExecute(object parameter)
         {
             bool canSimulate = true;
             foreach(var output in OutputBlocks)
@@ -271,6 +271,29 @@ namespace SchemeApplication.ViewModels
             }
 
             return !_schemeSimulatingService.IsSimulating && canSimulate;
+        }
+
+        #endregion
+
+        #region Switch Language
+
+        public ICommand SwitchLanguageCommand { get; }
+
+        private void OnSwitchLanguageCommandExecuted(object parameter)
+        {
+            if(parameter is not string cultureCode)
+            {
+                return;
+            }
+
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(cultureCode);
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(cultureCode);
+
+            ResourceDictionary dict = new ResourceDictionary();
+            dict.Source = new Uri($"Resources/Languages/Language-{cultureCode}.xaml", UriKind.Relative);
+
+            Application.Current.Resources.MergedDictionaries.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(dict);
         }
 
         #endregion
@@ -297,9 +320,10 @@ namespace SchemeApplication.ViewModels
             DeleteFigureCommand = new LambdaCommand(OnDeleteFigureCommandExecuted, CanDeleteBlockCommandExecuted);
             SetInputConnectorCommand = new LambdaCommand(OnSetInputConnectorCommandExecute, CanSetInputConnectorCommandExecuted);
             SetOutputConnectorCommand = new LambdaCommand(OnSetOutputConnectorCommandExecute, CanSetOutputConnectorCommandExecuted);
-            StartSimulateCommand = new LambdaCommand(OnStartSimulateCommandCommandExecuted, CanStartSimulateCommandCommandExecute);
+            StartSimulateCommand = new LambdaCommand(OnStartSimulateCommandExecuted, CanStartSimulateCommandExecute);
             ZoomInCommand = new LambdaCommand(OnZoomInCommandExecuted, CanZoomInCommandExecute);
             ZoomOutCommand = new LambdaCommand(OnZoomOutCommandExecuted, CanZoomOutCommandExecute);
+            SwitchLanguageCommand = new LambdaCommand(OnSwitchLanguageCommandExecuted);
         }
 
         #endregion

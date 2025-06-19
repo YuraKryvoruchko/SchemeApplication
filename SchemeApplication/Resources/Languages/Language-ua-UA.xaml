@@ -25,5 +25,6 @@
     <System:String x:Key="NameStr">Назва</System:String>
     <System:String x:Key="InputValueStr">Вхідне значення</System:String>
     <System:String x:Key="OutputValueStr">Вихідне значення</System:String>
+    <System:String x:Key="LanguageStr">Мова</System:String>
 
 </ResourceDictionary>

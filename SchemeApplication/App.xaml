@@ -8,7 +8,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources\Languages\Language-en-EN.xaml"/>
+                <ResourceDictionary Source="Resources\Languages\Language-en-GB.xaml"/>
                 <ResourceDictionary Source="Resources\Languages\Language-ua-UA.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
