@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+
+    <System:String x:Key="ToolboxStr">TOOLBOX</System:String>
+    <System:String x:Key="ToolboxToolTipStr">TOOLBOX is a menu where all available blocks are stored.</System:String>
+    <System:String x:Key="CommandsStr">COMMANDS</System:String>
+    <System:String x:Key="СommandsToolTipStr">COMMANDS is a menu where all available commands are stored.</System:String>
+    <System:String x:Key="OpenSimulatorStr">Open Simulator</System:String>
+    <System:String x:Key="OpenSimulatorToolTipStr">Click to open the window where you can simulate your logic circuit.</System:String>
+    <System:String x:Key="SystemBlocksToolTipStr">System blocks is a category where all system blocks are stored.</System:String>
+    <System:String x:Key="LogicalBlocksToolTipStr">Logical blocks is a category where all logical blocks are stored.</System:String>
+    <System:String x:Key="SplitBlocksToolTipStr">Split blocks is the category in which all splitters are stored.</System:String>
+    <System:String x:Key="InputToolTipStr">Input is a block to which you can input a “1” or “0” signal to a scheme.</System:String>
+    <System:String x:Key="OutputToolTipStr">Output is a block that can output a “1” or “0” signal to a scheme.</System:String>
+    <System:String x:Key="AndToolTipStr">AND is a block that performs the logical AND operation, i.e. compares two input signals, and if they are 1, the output will also be 1, otherwise - 0.</System:String>
+    <System:String x:Key="OrToolTipStr">OR is a block that performs the logical OR operation, i.e. compares two input signals, and if at least one signal is equal to 1, the output will also be 1, otherwise - 0.</System:String>
+    <System:String x:Key="NotToolTipStr">NOT is a block that performs the logical “NOT” operation, i.e. inverts the input signal. If the input is 1, the output will be 0 and vice versa.</System:String>
+    <System:String x:Key="DoubleSplitterToolTipStr">Double splitter is a block that duplicates the input signal into 2 outputs.</System:String>
+    <System:String x:Key="TripleSplitterToolTipStr">Triple splitter is a block that duplicates the input signal into 3 outputs.</System:String>
+    <System:String x:Key="SimulateStr">Simulate</System:String>
+    <System:String x:Key="SimulateToolTipStr">Click to refresh the simulation output.</System:String>
+    <System:String x:Key="InputsStr">Inputs</System:String>
+    <System:String x:Key="OutputsStr">Outputs</System:String>
+    <System:String x:Key="NameStr">Name</System:String>
+    <System:String x:Key="InputValueStr">Input value</System:String>
+    <System:String x:Key="OutputValueStr">Output value</System:String>
+
+</ResourceDictionary>

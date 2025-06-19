@@ -25,6 +25,12 @@ namespace SchemeApplication.ViewModels.ListBlocks
 
         #endregion
 
+        #region Tool Tip Key
+
+        public string? ToolTipKey { get => _listBlock.ToolTipKey; }
+
+        #endregion
+
         #region Index Of Block Config
 
         public int IndexOfBlockConfig { get => _listBlock.IndexOfBlockConfig; }

@@ -19,6 +19,12 @@ namespace SchemeApplication.ViewModels.ListBlocks
 
         #endregion
 
+        #region Tool Tip Key
+
+        public string? ToolTipKey { get => _blockCategory.ToolTipKey; }
+
+        #endregion
+
         #region List Blocks
 
         private ICollection<ListBlockViewModel> _listBlocks;

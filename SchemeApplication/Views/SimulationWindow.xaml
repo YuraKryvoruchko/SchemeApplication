@@ -21,23 +21,23 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="auto" MinWidth="150"/>
         </Grid.ColumnDefinitions>
-        <GroupBox Grid.Column="0" Header="Inputs" FontSize="16">
+        <GroupBox Grid.Column="0" Header="{DynamicResource InputsStr}" FontSize="16">
             <DataGrid ItemsSource="{Binding InputBlocks}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" FontSize="16"
+                    <DataGridTextColumn Header="{DynamicResource NameStr}" FontSize="16"
                                         Binding="{Binding Name}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Input value" FontSize="16"
+                    <DataGridTextColumn Header="{DynamicResource InputValueStr}" FontSize="16"
                                         Width="*"
                                         Binding="{Binding InputValue, Converter={StaticResource BlockValueConverter}}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </GroupBox>
-        <GroupBox Grid.Column="1" Header="Outputs" FontSize="16">
+        <GroupBox Grid.Column="1" Header="{DynamicResource OutputsStr}" FontSize="16">
             <DataGrid ItemsSource="{Binding SimulateResults}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" FontSize="16"
+                    <DataGridTextColumn Header="{DynamicResource NameStr}" FontSize="16"
                                         Binding="{Binding Name}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Output value" FontSize="16"
+                    <DataGridTextColumn Header="{DynamicResource OutputValueStr}" FontSize="16"
                                         Width="*"
                                         Binding="{Binding Value, Converter={StaticResource BlockValueConverter}}" 
                                         IsReadOnly="True"/>
@@ -45,7 +45,9 @@
             </DataGrid>
         </GroupBox>
         <StackPanel Grid.Column="2" Margin="20">
-            <Button Content="Simulate" FontSize="16"
+            <Button Content="{DynamicResource SimulateStr}" 
+                    ToolTip="{DynamicResource SimulateToolTipStr}"
+                    FontSize="16"
                     Command="{Binding Path=SimulateCommand}"/>
         </StackPanel>
     </Grid>

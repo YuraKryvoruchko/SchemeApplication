@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+
+    <System:String x:Key="ToolboxStr">ІНСТРУМЕНТИ</System:String>
+    <System:String x:Key="ToolboxToolTipStr">ІНСТРУМЕНТИ — це меню, де зберігаються всі доступні блоки.</System:String>
+    <System:String x:Key="CommandsStr">КОМАНДИ</System:String>
+    <System:String x:Key="СommandsToolTipStr">КОМАНДИ — це меню, де зберігаються всі доступні команди.</System:String>
+    <System:String x:Key="OpenSimulatorStr">Відкрити симулятор</System:String>
+    <System:String x:Key="OpenSimulatorToolTipStr">Натисніть, щоб відкрити вікно, де можна змоделювати вашу логічну схему.</System:String>
+    <System:String x:Key="SystemBlocksToolTipStr">System blocks — це категорія, в якій зберігаються всі системні блоки.</System:String>
+    <System:String x:Key="LogicalBlocksToolTipStr">Logical blocks — це категорія, в якій зберігаються всі логічні блоки.</System:String>
+    <System:String x:Key="SplitBlocksToolTipStr">Split blocks — це категорія, в якій зберігаються всі розгалужувачі.</System:String>
+    <System:String x:Key="InputToolTipStr">Input — це блок, до якого можна подати сигнал “1” або “0” для схеми.</System:String>
+    <System:String x:Key="OutputToolTipStr">Output — це блок, який може виводити сигнал “1” або “0” зі схеми.</System:String>
+    <System:String x:Key="AndToolTipStr">AND — це блок, який виконує логічну операцію І: порівнює два вхідні сигнали, і якщо обидва дорівнюють 1, на виході буде 1, інакше — 0.</System:String>
+    <System:String x:Key="OrToolTipStr">OR — це блок, який виконує логічну операцію АБО: порівнює два вхідні сигнали, і якщо хоча б один із них дорівнює 1, на виході буде 1, інакше — 0.</System:String>
+    <System:String x:Key="NotToolTipStr">NOT — це блок, який виконує логічну операцію НЕ: інвертує вхідний сигнал. Якщо вхід дорівнює 1, вихід буде 0, і навпаки.</System:String>
+    <System:String x:Key="DoubleSplitterToolTipStr">Double splitter — це блок, який дублює вхідний сигнал на 2 виходи.</System:String>
+    <System:String x:Key="TripleSplitterToolTipStr">Triple splitter — це блок, який дублює вхідний сигнал на 3 виходи.</System:String>
+    <System:String x:Key="SimulateStr">Симулювати</System:String>
+    <System:String x:Key="SimulateToolTipStr">Натисніть, щоб оновити вихідні результати симуляції.</System:String>
+    <System:String x:Key="InputsStr">Входи</System:String>
+    <System:String x:Key="OutputsStr">Виходи</System:String>
+    <System:String x:Key="NameStr">Назва</System:String>
+    <System:String x:Key="InputValueStr">Вхідне значення</System:String>
+    <System:String x:Key="OutputValueStr">Вихідне значення</System:String>
+
+</ResourceDictionary>
