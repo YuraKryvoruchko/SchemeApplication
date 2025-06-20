@@ -126,7 +126,7 @@ namespace SchemeApplication.ViewModels
         private void OnCreateBlockCommandExecuted(object parameter)
         {
             Point point = (Point)parameter;
-            Block blockConfig = TestData.BlockConfigs[_selectedListBlock.IndexOfBlockConfig];
+            Block blockConfig = ProjectData.BlockConfigs[_selectedListBlock.IndexOfBlockConfig];
             BlockFigureViewModel blockFigureViewModel = null;
             if (blockConfig.Type == BlockType.Input)
             {
@@ -321,7 +321,7 @@ namespace SchemeApplication.ViewModels
             _helpWindowService = helpWindowService;
 
             BlockCategories = new ObservableCollection<BlockCategoryViewModel>();
-            foreach (var category in TestData.BlockCategories)
+            foreach (var category in ProjectData.BlockCategories)
             {
                 BlockCategories.Add(new BlockCategoryViewModel(category));
             }
