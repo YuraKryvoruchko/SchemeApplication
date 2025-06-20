@@ -27,6 +27,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\scheme_app_icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Resources\Images\block_icons\and_icon.png" />
     <Resource Include="Resources\Images\block_icons\input_icon.png" />
     <Resource Include="Resources\Images\block_icons\not_icon.png" />
@@ -35,6 +39,10 @@
     <Resource Include="Resources\Images\block_icons\split_2_icon.png" />
     <Resource Include="Resources\Images\block_icons\split_3_icon.png" />
     <Resource Include="Resources\Images\null_image.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Infrastructure\MarkupExtensions\" />
   </ItemGroup>
 
 </Project>

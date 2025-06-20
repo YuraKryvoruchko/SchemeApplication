@@ -11,8 +11,14 @@
         xmlns:controls="clr-namespace:SchemeApplication.Views.Controls"
         xmlns:conv="clr-namespace:SchemeApplication.Infrastructure.Converters"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="Scheme App" 
+        Icon="/Resources/scheme_app_icon.ico"
+        Height="600" Width="900"
         d:DataContext="{d:DesignInstance vm:MainWindowViewModel}">
+
+    <Window.InputBindings>
+        <KeyBinding Key="F1" Command="{Binding OpenHelpWindowCommand}"/>
+    </Window.InputBindings>
 
     <Window.Resources>
 
@@ -39,6 +45,7 @@
         </Grid.ColumnDefinitions>
 
         <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Height="20">
+            <MenuItem Header="{DynamicResource HelpStr}" Height="20" Command="{Binding OpenHelpWindowCommand}"/>
             <MenuItem Header="{DynamicResource LanguageStr}" Height="20">
                 <MenuItem Header="English" 
                           Command="{Binding SwitchLanguageCommand}"
@@ -174,16 +181,17 @@
                         <HierarchicalDataTemplate DataType="{x:Type vmt:BlockCategoryViewModel}"
                                                   ItemsSource="{Binding ListBlocks}">
                             <TextBlock Text="{Binding Path=Name}"
+                                       FontSize="16"
                                        ToolTip="{Binding ToolTipKey, Converter={StaticResource ResKeyToValue}}"
                                        Foreground="#b1b2b3"/>
                         </HierarchicalDataTemplate>
 
                         <DataTemplate DataType="{x:Type vmt:ListBlockViewModel}">
-                            <WrapPanel Width="200" HorizontalAlignment="Right" 
+                            <WrapPanel Width="200" HorizontalAlignment="Right"
                                        ToolTip="{Binding ToolTipKey, Converter={StaticResource ResKeyToValue}}">
- 
-                                <Image Source="{Binding ImagePath}" Width="22"/>
-                                <TextBlock Text="{Binding Name}" Margin="5" Foreground="#b1b2b3"/>
+
+                                <Image Source="{Binding ImagePath}" Width="25"/>
+                                <TextBlock Text="{Binding Name}" FontSize="14" Margin="5" Foreground="#b1b2b3"/>
                                 
                             </WrapPanel>
                         </DataTemplate>

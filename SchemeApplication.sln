@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35521.163 d17.12
+VisualStudioVersion = 17.12.35521.163
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemeApplication", "SchemeApplication\SchemeApplication.csproj", "{368A5852-7FF0-4709-9C0D-67A4AEEDFECF}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupApp", "SetupApp\SetupApp.vdproj", "{1D4C52A1-0E22-4589-A787-A1F7834193E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,8 @@ Global
 		{368A5852-7FF0-4709-9C0D-67A4AEEDFECF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{368A5852-7FF0-4709-9C0D-67A4AEEDFECF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{368A5852-7FF0-4709-9C0D-67A4AEEDFECF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D4C52A1-0E22-4589-A787-A1F7834193E3}.Debug|Any CPU.ActiveCfg = Debug
+		{1D4C52A1-0E22-4589-A787-A1F7834193E3}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -26,5 +26,17 @@
     <System:String x:Key="InputValueStr">Вхідне значення</System:String>
     <System:String x:Key="OutputValueStr">Вихідне значення</System:String>
     <System:String x:Key="LanguageStr">Мова</System:String>
+    <System:String x:Key="HelpStr">Допомога</System:String>
+    <System:String x:Key="ControlStr">Допомога по управлінню:</System:String>
+    <System:String x:Key="RmbStr">Права кнопка миші(ПКМ)</System:String>
+    <System:String x:Key="DeleteStr">Delete</System:String>
+    <System:String x:Key="SelectElementStr">Обрати елемент:</System:String>
+    <System:String x:Key="DeleteElementStr">Видалити елемент:</System:String>
+    <System:String x:Key="ZoomInStr">Приблизити:</System:String>
+    <System:String x:Key="ZoomOutStr">Віддаляти:</System:String>
+    <System:String x:Key="DragStr">1. Щоб перетягнути блок, виберіть його та утримуйте клавішу ПКМ.</System:String>
+    <System:String x:Key="CreatingBlockStr">2. Щоб створити блок, виберіть блок в меню ІНСТРУМЕНТИ і клацніть правою кнопкою миші на робочій області, де ви хочете створити цей блок.</System:String>
+    <System:String x:Key="CreatingConnectionStr">3. Щоб створити з'єднання, виберіть вихідний (вхідний) пін на першому блоці і натисніть на вхідний (вихідний) пін на другому блоці.</System:String>
+    <System:String x:Key="SimulationWindowStr">Симуляція</System:String>
 
 </ResourceDictionary>

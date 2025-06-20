@@ -8,7 +8,9 @@
         xmlns:cf="clr-namespace:SchemeApplication.ViewModels.CanvasFigures"
         xmlns:conv="clr-namespace:SchemeApplication.Infrastructure.Converters"
         mc:Ignorable="d"
-        Title="SimulationWindow" Height="450" Width="800"
+        Title="{DynamicResource SimulationWindowStr}"
+        Icon="/Resources/scheme_app_icon.ico"
+        Height="450" Width="800"
         d:DataContext="{d:DesignInstance vm:SimulationWindowViewModel}">
 
     <Window.Resources>

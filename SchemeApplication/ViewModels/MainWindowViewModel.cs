@@ -12,6 +12,7 @@ using SchemeApplication.Infrastructure.BlockLogics.Base;
 using SchemeApplication.Infrastructure.BlockLogics;
 using SchemeApplication.Services.Interfaces;
 using SchemeApplication.ViewModels.ListBlocks;
+using SchemeApplication.Services;
 
 namespace SchemeApplication.ViewModels
 {
@@ -20,6 +21,7 @@ namespace SchemeApplication.ViewModels
         #region Fields
 
         private ISchemeSimulatingService _schemeSimulatingService;
+        private IHelpWindowService _helpWindowService;
 
         private ConnectorViewModel? _inputConnector;
         private ConnectorViewModel? _outputConnector;
@@ -298,13 +300,25 @@ namespace SchemeApplication.ViewModels
 
         #endregion
 
+        #region Open Help Window
+
+        public ICommand OpenHelpWindowCommand { get; }
+
+        private void OnOpenHelpWindowCommandExecuted(object parameter)
+        {
+            _helpWindowService.OpenOrActivateHelpWindow();
+        }
+
+        #endregion
+
         #endregion
 
         #region Contructors
 
-        public MainWindowViewModel(ISchemeSimulatingService schemeSimulatingService)
+        public MainWindowViewModel(ISchemeSimulatingService schemeSimulatingService, IHelpWindowService helpWindowService)
         {
             _schemeSimulatingService = schemeSimulatingService;
+            _helpWindowService = helpWindowService;
 
             BlockCategories = new ObservableCollection<BlockCategoryViewModel>();
             foreach (var category in TestData.BlockCategories)
@@ -324,6 +338,7 @@ namespace SchemeApplication.ViewModels
             ZoomInCommand = new LambdaCommand(OnZoomInCommandExecuted, CanZoomInCommandExecute);
             ZoomOutCommand = new LambdaCommand(OnZoomOutCommandExecuted, CanZoomOutCommandExecute);
             SwitchLanguageCommand = new LambdaCommand(OnSwitchLanguageCommandExecuted);
+            OpenHelpWindowCommand = new LambdaCommand(OnOpenHelpWindowCommandExecuted);
         }
 
         #endregion

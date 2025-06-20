@@ -11,13 +11,15 @@ namespace SchemeApplication
     public partial class App : Application
     {
         private ISchemeSimulatingService _schemeSimulatingService;
+        private IHelpWindowService _helpWindowService;
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             _schemeSimulatingService = new SchemeSimulatingService();
+            _helpWindowService = new HelpWindowService();
 
             MainWindow = new MainWindow();
-            MainWindow.DataContext = new MainWindowViewModel(_schemeSimulatingService);
+            MainWindow.DataContext = new MainWindowViewModel(_schemeSimulatingService, _helpWindowService);
             MainWindow.Show();
             MainWindow.Focus();
         }

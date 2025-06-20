@@ -1,0 +1,38 @@
+﻿<Window x:Class="SchemeApplication.Views.HelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SchemeApplication.Views"
+        mc:Ignorable="d"
+        Title="{DynamicResource HelpStr}"
+        Icon="/Resources/scheme_app_icon.ico"
+        Height="300" Width="300">
+    
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="{DynamicResource ControlStr}" FontWeight="Bold" Margin="5"/>
+            <StackPanel Margin="10,0">
+                <WrapPanel>
+                    <TextBlock Text="{DynamicResource SelectElementStr}" FontWeight="Bold"/>
+                    <TextBlock Text="{DynamicResource RmbStr}" Margin="10,0"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="{DynamicResource DeleteElementStr}" FontWeight="Bold"/>
+                    <TextBlock Text="{DynamicResource DeleteStr}" Margin="10,0"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="{DynamicResource ZoomInStr}" FontWeight="Bold"/>
+                    <TextBlock Text="Ctrl++" Margin="10,0"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="{DynamicResource ZoomOutStr}" FontWeight="Bold"/>
+                    <TextBlock Text="Ctrl+-" Margin="10,0"/>
+                </WrapPanel>
+                <TextBlock Text="{DynamicResource DragStr}" TextWrapping="Wrap" Margin="0,10,0,5"/>
+                <TextBlock Text="{DynamicResource CreatingBlockStr}" TextWrapping="Wrap" Margin="0,0,0,5"/>
+                <TextBlock Text="{DynamicResource CreatingConnectionStr}" TextWrapping="Wrap" Margin="0,0,0,5"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
