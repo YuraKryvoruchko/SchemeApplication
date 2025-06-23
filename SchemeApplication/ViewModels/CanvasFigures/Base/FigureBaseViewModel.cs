@@ -3,6 +3,10 @@ using System.Windows;
 
 namespace SchemeApplication.ViewModels.CanvasFigures.Base
 {
+    /// <summary>
+    /// Базовий клас для усіх viewmodel класів фігур: блоки, провідники. 
+    /// Надає базовий інтерфейс для керування фігурою та можливістю контролювання життям фігури.
+    /// </summary>
     internal class FigureBaseViewModel : ViewModel
     {
         #region Properties

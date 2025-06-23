@@ -2,6 +2,10 @@
 
 namespace SchemeApplication.Infrastructure.Commands.Base
 {
+    /// <summary>
+    /// Абстрактний клас, який надає інтерфейс для взаємодіями з командою 
+    /// та подію, що повідомляє про зміну можливості виконання команд 
+    /// </summary>
     internal abstract class Command : ICommand
     {
         public event EventHandler? CanExecuteChanged

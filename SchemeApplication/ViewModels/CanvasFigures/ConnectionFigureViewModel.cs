@@ -2,6 +2,9 @@
 
 namespace SchemeApplication.ViewModels.CanvasFigures
 {
+    /// <summary>
+    /// Viewmodel клас для провідників. Надає дані про конектори, до яких під'єднаний провідник. 
+    /// </summary>
     internal class ConnectionFigureViewModel : FigureBaseViewModel
     {
         #region Properties 

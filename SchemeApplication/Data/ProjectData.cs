@@ -3,6 +3,10 @@ using SchemeApplication.ViewModels.CanvasFigures;
 
 namespace SchemeApplication.Data
 {
+    /// <summary>
+    /// Зберігає конфігураційні дані для елементів категорій й елементів списку 
+    /// та самих логічних блоків
+    /// </summary>
     internal class ProjectData
     {
         #region ListBlockCategories

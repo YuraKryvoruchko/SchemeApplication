@@ -7,6 +7,9 @@ using System.Windows.Input;
 
 namespace SchemeApplication.ViewModels
 {
+    /// <summary>
+    /// Viewmodel клас для вікна симуляції SimulationWindow.xaml, який оброблює усі введення користувача та надає доступ до даних
+    /// </summary>
     internal class SimulationWindowViewModel : ViewModel 
     {
         #region Properties

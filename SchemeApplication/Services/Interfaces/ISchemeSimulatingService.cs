@@ -2,6 +2,9 @@
 
 namespace SchemeApplication.Services.Interfaces
 {
+    /// <summary>
+    /// Інтерфейс для сервісу вікна симуляції
+    /// </summary>
     internal interface ISchemeSimulatingService
     {
         bool IsSimulating { get; }

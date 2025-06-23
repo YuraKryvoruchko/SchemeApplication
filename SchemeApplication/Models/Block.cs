@@ -2,6 +2,9 @@
 
 namespace SchemeApplication.Models
 {
+    /// <summary>
+    /// Дані про логічні блоки
+    /// </summary>
     internal class Block
     {
         public string? Name { get; set; }

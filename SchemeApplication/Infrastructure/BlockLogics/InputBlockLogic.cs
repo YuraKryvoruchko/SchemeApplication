@@ -2,6 +2,9 @@
 
 namespace SchemeApplication.Infrastructure.BlockLogics
 {
+    /// <summary>
+    /// Операція для блоку входу схеми з можливістю задати вхідне значення
+    /// </summary>
     internal class InputBlockLogic : BlockLogic
     {
         public bool Value { get; set; }

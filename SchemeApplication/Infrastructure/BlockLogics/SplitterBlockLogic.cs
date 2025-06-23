@@ -3,6 +3,9 @@ using SchemeApplication.ViewModels.CanvasFigures;
 
 namespace SchemeApplication.Infrastructure.BlockLogics
 {
+    /// <summary>
+    /// Реалізація функції розгалуження сигналу
+    /// </summary>
     internal class SplitterBlockLogic : BlockLogic
     {
         public override bool Execute()

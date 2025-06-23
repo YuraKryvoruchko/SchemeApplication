@@ -1,10 +1,8 @@
-﻿using SchemeApplication.Models;
-using SchemeApplication.ViewModels;
+﻿using SchemeApplication.ViewModels;
 using SchemeApplication.ViewModels.CanvasFigures;
 using SchemeApplication.ViewModels.CanvasFigures.Base;
 using SchemeApplication.ViewModels.ListBlocks;
 using SchemeApplication.Views.Controls;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -12,7 +10,7 @@ using System.Windows.Input;
 namespace SchemeApplication
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Внутрішня логіка взаємодії з MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {

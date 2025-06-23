@@ -3,6 +3,9 @@ using SchemeApplication.ViewModels.CanvasFigures;
 
 namespace SchemeApplication.Infrastructure.BlockLogics
 {
+    /// <summary>
+    /// Реалізація операції логічного заперечення НЕ
+    /// </summary>
     internal class NotBlockLogic : BlockLogic
     {
         public override bool Execute()

@@ -6,6 +6,9 @@ using System.Windows.Media;
 
 namespace SchemeApplication.Views.Controls
 {
+    /// <summary>
+    /// Логіка перетягування об'єктів, які є внутрішніми об'єктами Canvas
+    /// </summary>
     public class DraggableContentControl : ContentControl
     {
         #region Properties

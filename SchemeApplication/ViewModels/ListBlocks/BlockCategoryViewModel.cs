@@ -3,6 +3,9 @@ using SchemeApplication.ViewModels.ListBlocks.Base;
 
 namespace SchemeApplication.ViewModels.ListBlocks
 {
+    /// <summary>
+    /// Viewmodel категорії блоків, яка надає дані про категорію та самі елементи категорії.
+    /// </summary>
     internal class BlockCategoryViewModel : TreeViewItemViewModel
     {
         #region Fields

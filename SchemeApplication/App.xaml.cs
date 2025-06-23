@@ -6,7 +6,8 @@ using SchemeApplication.ViewModels;
 namespace SchemeApplication
 {
     /// <summary>
-    /// Interaction logic for App.xaml
+    /// Створення головного меню та логіка для впровадження залежностей у viewmodel 
+    /// головного меню на запуску програми.
     /// </summary>
     public partial class App : Application
     {

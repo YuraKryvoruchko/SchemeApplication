@@ -4,6 +4,9 @@ using System.Windows;
 
 namespace SchemeApplication.ViewModels.CanvasFigures
 {
+    /// <summary>
+    /// Viewmodel для логічних блоків. Дає доступ до даних про блок та реалізує взаємодію з логічною операцією блока.
+    /// </summary>
     internal class BlockFigureViewModel : FigureBaseViewModel
     {
         #region Fields

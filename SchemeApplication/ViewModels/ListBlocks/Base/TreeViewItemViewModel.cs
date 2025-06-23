@@ -2,6 +2,9 @@
 
 namespace SchemeApplication.ViewModels.ListBlocks.Base
 {
+    /// <summary>
+    /// Базовий клас, який надає дані про стан елемента у деревоподібному списку.
+    /// </summary>
     internal class TreeViewItemViewModel : ViewModel
     {
         #region Properties

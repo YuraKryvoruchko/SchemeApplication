@@ -1,5 +1,8 @@
 ﻿namespace SchemeApplication.Models
 {
+    /// <summary>
+    /// Дані про категорію блоків
+    /// </summary>
     internal class BlockCategory
     {
         public string? Name { get; set; }

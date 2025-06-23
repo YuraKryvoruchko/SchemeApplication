@@ -4,6 +4,9 @@ using System.Windows.Data;
 
 namespace SchemeApplication.Infrastructure.Converters
 {
+    /// <summary>
+    /// Конвертує перший елемент значень масиву(назву ключа ресурсу) у конкретний ресурс 
+    /// </summary>
     internal class ResourceKeyToValueConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)

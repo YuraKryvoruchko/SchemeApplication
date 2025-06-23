@@ -1,5 +1,8 @@
 ﻿namespace SchemeApplication.Models
 {
+    /// <summary>
+    /// Дані про елемент списку блоку
+    /// </summary>
     internal class ListBlock
     {
         public string? Name { get; set; }

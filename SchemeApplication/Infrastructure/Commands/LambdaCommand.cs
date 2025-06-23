@@ -2,6 +2,9 @@
 
 namespace SchemeApplication.Infrastructure.Commands
 {
+    /// <summary>
+    /// Клас команди, що наслідується від Command та надає зручний спосіб задання методів виконання та перевірки
+    /// </summary>
     internal class LambdaCommand : Command
     {
         private readonly Action<object> _execute;

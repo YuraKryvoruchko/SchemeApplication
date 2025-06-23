@@ -3,6 +3,9 @@ using SchemeApplication.Views;
 
 namespace SchemeApplication.Services
 {
+    /// <summary>
+    /// Сервіс, який відповідає за контрольоване відкриття вікна допомоги HelpWindow.xaml
+    /// </summary>
     internal class HelpWindowService : IHelpWindowService
     {
         #region Fields

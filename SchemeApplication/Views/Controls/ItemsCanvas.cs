@@ -4,6 +4,9 @@ using System.Windows.Media;
 
 namespace SchemeApplication.Views.Controls
 {
+    /// <summary>
+    /// Контролер елементів, який за контейнер зберігає об'єкт типу Canvas
+    /// </summary>
     internal class ItemsCanvas : ItemsControl
     {
         public Canvas Canvas { get; private set; }

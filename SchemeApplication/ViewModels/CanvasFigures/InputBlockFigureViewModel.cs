@@ -2,6 +2,9 @@
 
 namespace SchemeApplication.ViewModels.CanvasFigures
 {
+    /// <summary>
+    /// Viewmodel для блоків входів логічної схеми, які надають можливість введення початкового значення на блок
+    /// </summary>
     internal class InputBlockFigureViewModel : BlockFigureViewModel
     {
         #region Fields

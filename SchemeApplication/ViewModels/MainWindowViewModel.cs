@@ -12,12 +12,13 @@ using SchemeApplication.Infrastructure.BlockLogics.Base;
 using SchemeApplication.Infrastructure.BlockLogics;
 using SchemeApplication.Services.Interfaces;
 using SchemeApplication.ViewModels.ListBlocks;
-using SchemeApplication.Services;
-using SchemeApplication.Infrastructure.Converters;
 
 namespace SchemeApplication.ViewModels
 {
-    class MainWindowViewModel : ViewModel
+    /// <summary>
+    /// Viewmodel клас для головного меню MainWindow.xaml, який оброблює усі введення користувача та надає доступ до даних
+    /// </summary>
+    internal class MainWindowViewModel : ViewModel
     {
         #region Fields
 

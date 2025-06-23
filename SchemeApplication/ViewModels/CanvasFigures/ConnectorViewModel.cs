@@ -3,6 +3,9 @@ using System.Windows;
 
 namespace SchemeApplication.ViewModels.CanvasFigures
 {
+    /// <summary>
+    /// Viewmodel для конекторів(входів/виходів) блоків, яка надає інформацію та контролює кореневий блок та своє підключення
+    /// </summary>
     internal class ConnectorViewModel : ViewModel
     {
         #region Properties

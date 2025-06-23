@@ -4,6 +4,9 @@ using System.Windows.Media;
 
 namespace SchemeApplication.Infrastructure.Converters
 {
+    /// <summary>
+    /// Конвертує булеве значення у колір заливки
+    /// </summary>
     internal class BoolToBrushConverter : IValueConverter
     {
         public Brush TrueBrush { get; set; } = Brushes.Blue;

@@ -3,6 +3,9 @@ using SchemeApplication.ViewModels.CanvasFigures;
 
 namespace SchemeApplication.Infrastructure.BlockLogics
 {
+    /// <summary>
+    /// Реалізація операції логічного І
+    /// </summary>
     internal class AndBlockLogic : BlockLogic
     {
         public override bool Execute()

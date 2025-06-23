@@ -5,6 +5,9 @@ using SchemeApplication.Views;
 
 namespace SchemeApplication.Services
 {
+    /// <summary>
+    /// Сервіс, який контролює вікно симуляції та повідомляє підписників про закінчення роботи вікна
+    /// </summary>
     internal class SchemeSimulatingService : ISchemeSimulatingService
     {
         #region Fields

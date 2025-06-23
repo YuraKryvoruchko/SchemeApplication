@@ -3,6 +3,9 @@ using System.Runtime.CompilerServices;
 
 namespace SchemeApplication.ViewModels.Base
 {
+    /// <summary>
+    /// Базовий абстрактний клас для усіх viewmodels
+    /// </summary>
     internal abstract class ViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
