@@ -175,9 +175,14 @@
 
                         <HierarchicalDataTemplate DataType="{x:Type vmt:BlockCategoryViewModel}"
                                                   ItemsSource="{Binding ListBlocks}">
-                            <TextBlock Text="{Binding Path=Name}"
-                                       FontSize="16"         
+                            <TextBlock FontSize="16"         
                                        Foreground="#b1b2b3">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0}" Converter="{StaticResource ResKeyToValue}">
+                                        <Binding Path="Name"/>
+                                        <Binding Path="DataContext.Language" ElementName="mainWindow"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
                                 <TextBlock.ToolTip>
                                     <MultiBinding StringFormat="{}{0}" Converter="{StaticResource ResKeyToValue}">
                                         <Binding Path="ToolTipKey"/>

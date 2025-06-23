@@ -11,7 +11,7 @@ namespace SchemeApplication.Data
         {
             new BlockCategory()
             {
-                Name = "System blocks",
+                Name = "SystemBlocksStr",
                 ToolTipKey = "SystemBlocksToolTipStr",
                 ListBlocks = new ListBlock[]
                 {
@@ -21,7 +21,7 @@ namespace SchemeApplication.Data
             },
             new BlockCategory()
             {
-                Name = "Logical blocks",
+                Name = "LogicalBlocksStr",
                 ToolTipKey = "LogicalBlocksToolTipStr",
                 ListBlocks = new ListBlock[]
                 {
@@ -32,7 +32,7 @@ namespace SchemeApplication.Data
             },
             new BlockCategory()
             {
-                Name = "Split blocks",
+                Name = "SplitBlocksStr",
                 ToolTipKey = "SplitBlocksToolTipStr",
                 ListBlocks = new ListBlock[]
                 {

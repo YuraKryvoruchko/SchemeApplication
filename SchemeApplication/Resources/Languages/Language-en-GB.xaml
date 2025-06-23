@@ -7,6 +7,9 @@
     <System:String x:Key="CommandsStr">COMMANDS</System:String>
     <System:String x:Key="СommandsToolTipStr">COMMANDS is a menu where all available commands are stored.</System:String>
     <System:String x:Key="OpenSimulatorStr">Open Simulator</System:String>
+    <System:String x:Key="SystemBlocksStr">System blocks</System:String>
+    <System:String x:Key="LogicalBlocksStr">Logical blocks</System:String>
+    <System:String x:Key="SplitBlocksStr">Split blocks</System:String>
     <System:String x:Key="OpenSimulatorToolTipStr">Click to open the window where you can simulate your logic circuit.</System:String>
     <System:String x:Key="SystemBlocksToolTipStr">System blocks is a category where all system blocks are stored.</System:String>
     <System:String x:Key="LogicalBlocksToolTipStr">Logical blocks is a category where all logical blocks are stored.</System:String>
