@@ -4,19 +4,20 @@ using System.Windows.Data;
 
 namespace SchemeApplication.Infrastructure.Converters
 {
-    internal class ResourceKeyToValueConverter : IValueConverter
+    internal class ResourceKeyToValueConverter : IMultiValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if(value is string key)
-            {
-                return Application.Current.TryFindResource(key) ?? $"[{key}]";
-            }
+            if (values.Length < 1 || values[0] == null)
+                return null;
 
-            return null;
+            string key = values[0].ToString();
+            var result = Application.Current.TryFindResource(key);
+
+            return result ?? $"!{key}!";
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

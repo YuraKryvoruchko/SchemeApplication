@@ -9,9 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Infrastructure\MarkupExtensions\**" />
     <Compile Remove="Resources\Images\BlockImages\**" />
+    <EmbeddedResource Remove="Infrastructure\MarkupExtensions\**" />
     <EmbeddedResource Remove="Resources\Images\BlockImages\**" />
+    <None Remove="Infrastructure\MarkupExtensions\**" />
     <None Remove="Resources\Images\BlockImages\**" />
+    <Page Remove="Infrastructure\MarkupExtensions\**" />
     <Page Remove="Resources\Images\BlockImages\**" />
   </ItemGroup>
 

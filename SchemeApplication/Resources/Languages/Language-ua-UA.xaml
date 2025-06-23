@@ -8,6 +8,9 @@
     <System:String x:Key="СommandsToolTipStr">КОМАНДИ — це меню, де зберігаються всі доступні команди.</System:String>
     <System:String x:Key="OpenSimulatorStr">Відкрити симулятор</System:String>
     <System:String x:Key="OpenSimulatorToolTipStr">Натисніть, щоб відкрити вікно, де можна змоделювати вашу логічну схему.</System:String>
+    <System:String x:Key="SystemBlocksStr">Системні блоки</System:String>
+    <System:String x:Key="LogicalBlocksStr">Логічні блоки</System:String>
+    <System:String x:Key="SplitBlocksStr">Розгалужувачі</System:String>
     <System:String x:Key="SystemBlocksToolTipStr">System blocks — це категорія, в якій зберігаються всі системні блоки.</System:String>
     <System:String x:Key="LogicalBlocksToolTipStr">Logical blocks — це категорія, в якій зберігаються всі логічні блоки.</System:String>
     <System:String x:Key="SplitBlocksToolTipStr">Split blocks — це категорія, в якій зберігаються всі розгалужувачі.</System:String>
