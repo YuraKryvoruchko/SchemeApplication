@@ -9,9 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Infrastructure\MarkupExtensions\**" />
     <Compile Remove="Resources\Images\BlockImages\**" />
+    <EmbeddedResource Remove="Infrastructure\MarkupExtensions\**" />
     <EmbeddedResource Remove="Resources\Images\BlockImages\**" />
+    <None Remove="Infrastructure\MarkupExtensions\**" />
     <None Remove="Resources\Images\BlockImages\**" />
+    <Page Remove="Infrastructure\MarkupExtensions\**" />
     <Page Remove="Resources\Images\BlockImages\**" />
   </ItemGroup>
 
@@ -39,10 +43,6 @@
     <Resource Include="Resources\Images\block_icons\split_2_icon.png" />
     <Resource Include="Resources\Images\block_icons\split_3_icon.png" />
     <Resource Include="Resources\Images\null_image.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Infrastructure\MarkupExtensions\" />
   </ItemGroup>
 
 </Project>

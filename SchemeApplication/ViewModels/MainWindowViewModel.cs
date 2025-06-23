@@ -13,6 +13,7 @@ using SchemeApplication.Infrastructure.BlockLogics;
 using SchemeApplication.Services.Interfaces;
 using SchemeApplication.ViewModels.ListBlocks;
 using SchemeApplication.Services;
+using SchemeApplication.Infrastructure.Converters;
 
 namespace SchemeApplication.ViewModels
 {
@@ -111,6 +112,18 @@ namespace SchemeApplication.ViewModels
         { 
             get => _zoom; 
             set => Set(ref _zoom, value);
+        }
+
+        #endregion
+
+        #region Language
+
+        private string _language = "";
+
+        public string Language
+        {
+            get => _language;
+            set => Set(ref _language, value);
         }
 
         #endregion
@@ -296,6 +309,8 @@ namespace SchemeApplication.ViewModels
 
             Application.Current.Resources.MergedDictionaries.Clear();
             Application.Current.Resources.MergedDictionaries.Add(dict);
+
+            Language = cultureCode;
         }
 
         #endregion
