@@ -41,8 +41,4 @@
     <Resource Include="Resources\Images\null_image.png" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Infrastructure\MarkupExtensions\" />
-  </ItemGroup>
-
 </Project>
