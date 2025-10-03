@@ -50,7 +50,7 @@ This is a program developed as part of a coursework for the second semester of t
 
 ## 2. Moving and deleting blocks
 
-![](./assets/scroll.gif)
+![](./assets/move_and_delete.gif)
 
 ## 3. Scrolling
 
