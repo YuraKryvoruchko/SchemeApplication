@@ -38,8 +38,9 @@
     <System:String x:Key="ZoomInStr">Приблизити:</System:String>
     <System:String x:Key="ZoomOutStr">Віддаляти:</System:String>
     <System:String x:Key="DragStr">1. Щоб перетягнути блок, виберіть його та утримуйте клавішу ЛКМ.</System:String>
-    <System:String x:Key="CreatingBlockStr">2. Щоб створити блок, виберіть блок в меню ІНСТРУМЕНТИ і клацніть правою кнопкою миші на робочій області, де ви хочете створити цей блок.</System:String>
+    <System:String x:Key="CreatingBlockStr">2. Щоб створити блок, виберіть блок в меню ІНСТРУМЕНТИ і клацніть лівою кнопкою миші на робочій області, де ви хочете створити цей блок.</System:String>
     <System:String x:Key="CreatingConnectionStr">3. Щоб створити з'єднання, виберіть вихідний (вхідний) пін на першому блоці і натисніть на вхідний (вихідний) пін на другому блоці.</System:String>
+    <System:String x:Key="MoveOnWorkspace">4. Використовуйте горизонтальну та вертикальну смуги прокрутки, щоб переміщатися по робочій області.</System:String>
     <System:String x:Key="SimulationWindowStr">Симуляція</System:String>
 
 </ResourceDictionary>

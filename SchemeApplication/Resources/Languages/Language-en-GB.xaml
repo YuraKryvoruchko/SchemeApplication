@@ -38,8 +38,9 @@
     <System:String x:Key="ZoomInStr">Zoom in:</System:String>
     <System:String x:Key="ZoomOutStr">Zoom out:</System:String>
     <System:String x:Key="DragStr">1. To drag a block, select it and hold down LMB.</System:String>
-    <System:String x:Key="CreatingBlockStr">2. To create a block, select a block in the TOOLBOX menu and right-click on the workspace where you want to create this block.</System:String>
+    <System:String x:Key="CreatingBlockStr">2. To create a block, select a block in the TOOLBOX menu and left-click on the workspace where you want to create this block.</System:String>
     <System:String x:Key="CreatingConnectionStr">3. To create connections, select the output (input) pin on the first block and click on the input (output) pin on the second block.</System:String>
+    <System:String x:Key="MoveOnWorkspace">4. Use the horizontal and vertical scroll bars to move on the workspace.</System:String>
     <System:String x:Key="SimulationWindowStr">Simulation</System:String>
 
 </ResourceDictionary>
